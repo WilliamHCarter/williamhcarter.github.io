@@ -44,7 +44,7 @@ h1{
     justify-content: center;
     font-size: 0.85rem;
     letter-spacing: 0.1rem;
-    padding-bottom: 14rem;
+    padding-bottom: 9rem;
 }
 .waves{
     display: flex;
@@ -52,7 +52,16 @@ h1{
     width: 960;
     height: 540;
 }
-.wave1container{
+.wavecontainer{
     width: 100%;
     height: 20vh;
+}
+
+.waveborder{
+    background-color: #C62368;
+    width: 100%;
+    height: 4.6vh;
+}
+.flip{
+    transform: rotate(180deg);
 }
