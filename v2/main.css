@@ -8,15 +8,26 @@
 body {
     padding:0;
     margin:0;
-}
-/* =========HOME PAGE ==========*/
-#home {
     font-family: Roboto;
     font-weight: 100;
     font-size: 1.8rem;
     text-transform: uppercase;
     letter-spacing: .5rem;
 }
+
+a:link {
+    color:black;
+    text-decoration: none;
+    background-color: transparent;
+  }
+  
+  a:visited {
+    color: black;
+    background-color: transparent;
+    text-decoration: none;
+  }
+
+/* =========HOME PAGE ==========*/
 .navbar{
     font-size: 0.44rem;
     letter-spacing: 0.1rem;
@@ -62,7 +73,23 @@ h1{
     height: 4.6vh;
 }
 
-#skills{
-    background-color: #C62368;
+.skills_header{
+    display: flex;
+    justify-content: center;
+    font-size: 1.75rem;
+    letter-spacing: 0.1rem;
+    padding-bottom: 2.5rem;
+}
+
+.skill_container{
+    display: flex;
+    justify-content: space-evenly;
+}
+
+.skill_paragraph{
+    font-size: 1rem;
+    letter-spacing: 0.1rem;
+    text-transform: none;
+    padding:2rem;
 
 }
