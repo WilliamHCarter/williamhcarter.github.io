@@ -1,8 +1,5 @@
-.next
-components
 node_modules
-pages
-public
-next.config.js
-package.json
-package-lock.json
+.next
+dist
+.vercel
+.env

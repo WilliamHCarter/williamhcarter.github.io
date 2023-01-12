@@ -1,3 +1,4 @@
+import { forwardRef } from 'react'
 import Logo from './logo'
 import NextLink from 'next/link'
 import {
@@ -24,16 +25,22 @@ const LinkItem = ({href, path, children}) => {
     const inactiveColor = useColorModeValue('gray200', 'whiteAlpha.900')
     
     return(
-        <NextLink href={href}>
-            <Link 
-            p={2}
-            bg ={active ? 'glassTeal' : undefined}
-            color ={active ? '#202023' : inactiveColor}>
-                {children}
-            </Link>
-        </NextLink>
+        <Link
+        as={NextLink}
+        href={href}
+        scroll={false}
+        p={2}
+        bg={active ? 'grassTeal' : undefined}
+        color={active ? '#202023' : inactiveColor}
+      >
+        {children}
+      </Link>
     )
 }
+
+const MenuLink = forwardRef((props, ref) => (
+    <Link ref={ref} as={NextLink} {...props} />
+  ))
 
 const Navbar = props => {
     const {path} = props
@@ -56,7 +63,7 @@ const Navbar = props => {
           justifyContent="space-between"
           >
             <Flex align="center" mr={5}>
-                <Heading as="h1" size="lg" letterSpacing={"tight"}>
+                <Heading as="h1" size="lg" fontSize="2xl" >
                     <Logo/>
                 </Heading>
 
@@ -70,7 +77,7 @@ const Navbar = props => {
                 flexGrow={1}
                 mt={{ base: 4, md: 0 }}
                 >
-                <LinkItem href="/works" path={path}>
+                <LinkItem href="/work" path={path}>
                     Work
                 </LinkItem>
                 <LinkItem href="/resume" path={path}>
@@ -88,18 +95,18 @@ const Navbar = props => {
                     <Menu align="right">
                         <MenuButton as={IconButton} icon={<HamburgerIcon/>} variant="outline" aria-label="Options" />
                         <MenuList>
-                            <NextLink href="/" passHref>
-                            <MenuItem as={Link}>About</MenuItem>
-                            </NextLink>
-                            <NextLink href="/work" passHref>
-                            <MenuItem as={Link}>Work</MenuItem>
-                            </NextLink>
-                            <NextLink href="/resume" passHref>
-                            <MenuItem as={Link}>Resume</MenuItem>
-                            </NextLink>
-                            <NextLink href="/contact" passHref>
-                            <MenuItem as={Link}>Contact</MenuItem>
-                            </NextLink>
+                            <MenuItem as={MenuLink} href="/">
+                                About
+                            </MenuItem>
+                            <MenuItem as={MenuLink} href="/work">
+                                Work
+                            </MenuItem>
+                            <MenuItem as={MenuLink} href="/resume">
+                                Resume
+                            </MenuItem>
+                            <MenuItem as={MenuLink} href="/contact">
+                                Contact
+                            </MenuItem>
                         </MenuList>
                     </Menu>
                     <ThemeToggleButton/>

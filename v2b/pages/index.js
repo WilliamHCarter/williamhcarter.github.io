@@ -1,6 +1,7 @@
 import { Container, Box, Heading } from "@chakra-ui/react"
 import Head from "next/head"
 import Section from "../components/section.js"
+import Paragraph from "../components/paragraph.js"
 const Page = () => {
     return (
     <Container>
@@ -20,7 +21,9 @@ const Page = () => {
             <Heading as="h3" variant="section-title">
                 Bio
             </Heading>
-            <p>Paragraph</p>
+            <Paragraph>
+                Paragraph
+            </Paragraph>
         </Section>
     </Container>
     )
