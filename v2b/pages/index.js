@@ -4,7 +4,8 @@ import Section from "../components/section.js"
 import Paragraph from "../components/paragraph.js"
 const Page = () => {
     return (
-    <Container>
+    <Container          
+    maxW="container.md">
         <Box p={3} mb={6} align="center"></Box>
         <Box borderRadius="lg" bg="teal" p={3} mb={6} align="center">
             This should be a box with rounded corners.
@@ -22,7 +23,12 @@ const Page = () => {
                 Bio
             </Heading>
             <Paragraph>
-                Paragraph
+            Digital design and product creation are what I love to do. 
+            With over 8 years of development experience, I have the technical skillset
+            to create performant and scalable products, while maintaining accesible user 
+            experiences and a bit of creative flair. I have a variety of experience in agile 
+            software development, from startups, to academic research for universities,
+             and even large technical firms.
             </Paragraph>
         </Section>
     </Container>
