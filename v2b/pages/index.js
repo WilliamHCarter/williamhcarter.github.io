@@ -2,6 +2,9 @@ import { Container, Box, Heading } from "@chakra-ui/react"
 import Head from "next/head"
 import Section from "../components/section.js"
 import Paragraph from "../components/paragraph.js"
+import Work from "./work.js"
+import Contact from "./contact.js"
+
 const Page = () => {
     return (
     <Container          
@@ -30,6 +33,12 @@ const Page = () => {
             software development, from startups, to academic research for universities,
              and even large technical firms.
             </Paragraph>
+        </Section>
+        <Section delay={0.2}>
+            <Work></Work>
+        </Section>
+        <Section delay={0.3}>
+            <Contact></Contact>
         </Section>
     </Container>
     )

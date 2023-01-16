@@ -2,14 +2,15 @@ import { Container, Heading, SimpleGrid, Divider } from '@chakra-ui/react'
 import Section from '../components/section'
 import Layout from '../components/layouts/article'
 import { WorkGridItem } from '../components/grid-item'
-import thumbBbot from '/public/BBOT.png'
+import thumbBbot from '/public/BBOT2.png'
+import thumbCrossWalk from '/public/Crosswalk.png'
 
 const Work = () => (
   <Layout title="Work">
-    <Container maxW="container.lg">
-      <Heading as="h3" fontSize={20} mb={4}>
-        Works
-      </Heading>
+    <Container maxW="container.lg" p={0}>
+    <Heading as="h3" variant="section-title">
+                Work
+            </Heading>
 
       <SimpleGrid columns={[1, 1, 2]} gap={6}>
         <Section>
@@ -18,8 +19,8 @@ const Work = () => (
           </WorkGridItem>
         </Section>
         <Section>
-          <WorkGridItem id="brokerbot" title="BrokerBot" thumbnail={thumbBbot}>
-            Autonomous trading alogrithms system utilizing backtesting via the Alpaca API.
+          <WorkGridItem id="https://github.com/WilliamHCarter/LD46" title="Crosswalk" thumbnail={thumbCrossWalk}>
+            Experimental physics game created with Unity for Ludum Dare 46.
           </WorkGridItem>
         </Section>
         

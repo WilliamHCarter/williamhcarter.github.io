@@ -21,7 +21,6 @@ const Logo = () => {
                     <Image src={logoImage} width={27} height={27}alt="Logo"/>
                     
                     <Text color={useColorModeValue('gray.800', 'whiteAlpha.900')}
-                    fontFamily='Libre Franklin, sans-serif'
                     fontWeight={600}
                     ml={1}>
                         Will Carter

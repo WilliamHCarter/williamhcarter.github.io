@@ -32,7 +32,7 @@ const components = {
 }
 
 const fonts = {
-    heading: `'Libre Franklin', sans-serif`,
+  heading: `'Poppins', sans-serif`,
 }
 
 const colors = {
@@ -43,6 +43,7 @@ const config = {
   initialColorMode: 'dark',
   useSystemColorMode: true
 }
+
 
 const theme = extendTheme({ config, styles, components, fonts, colors })
 export default theme
