@@ -24,7 +24,7 @@ const Page = () => {
             <Heading as="h3" variant="section-title">
                 Bio
             </Heading>
-            <Paragraph maxW="container.md" align="left">
+            <Paragraph align="left">
             Digital design and product creation are what I love to do. 
             With over 8 years of development experience, I have the technical skillset
             to create performant and scalable products, while maintaining accesible user 
