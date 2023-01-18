@@ -2,8 +2,8 @@ import { Container, Heading, SimpleGrid, Divider } from '@chakra-ui/react'
 import Section from '../components/section'
 import Layout from '../components/layouts/article'
 import { WorkGridItem } from '../components/grid-item'
-import thumbBbot from '/public/BBOT2.png'
-import thumbCrossWalk from '/public/Crosswalk.png'
+import thumbBbot from '/public/BBOT3.png'
+import thumbCrossWalk from '/public/Crosswalk4.png'
 
 const Work = () => (
   <Layout title="Work">

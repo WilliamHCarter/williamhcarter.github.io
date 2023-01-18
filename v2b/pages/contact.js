@@ -1,12 +1,7 @@
-import { Box, Button, Container, Heading, Link, List, ListItem, NextLink } from '@chakra-ui/react'
-import { IoLogoTwitter, IoLogoInstagram, IoLogoGithub } from 'react-icons/io5'
+import { Button, Container, Heading, Link, List, ListItem, NextLink } from '@chakra-ui/react'
+import { IoLogoGithub } from 'react-icons/io5'
 import { ChevronRightIcon, EmailIcon } from '@chakra-ui/icons'
-import Section from '../components/section'
 import Layout from '../components/layouts/article'
-import { GridItem } from '../components/grid-item'
-import thumbBbot from '/public/BBOT2.png'
-import thumbCrossWalk from '/public/Crosswalk.png'
-
 const Contact = () => (
   <Layout title="Work">
     <Container maxW="container.lg" p={0}>

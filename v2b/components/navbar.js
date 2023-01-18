@@ -4,6 +4,7 @@ import NextLink from 'next/link'
 import {
     Container,
     Box,
+    Button,
     Link,
     Stack,
     Heading,
@@ -75,10 +76,11 @@ const Navbar = props => {
                 width={{base:'full', md: 'auto'}}
                 alignItems="center"
                 justifyContent="flex-end"
+                fontWeight="semibold"
                 flexGrow={1}
                 mt={{ base: 4, md: 0 }}
                 >
-                <LinkItem href="/work" path={path}>
+                <LinkItem href="/work" path={path} >
                     Work
                 </LinkItem>
                 <LinkItem href="/WillCarterResume.pdf" path={path}>
@@ -86,6 +88,13 @@ const Navbar = props => {
                 </LinkItem>
                 <LinkItem href="/contact" path={path}>
                     Contact
+                </LinkItem>
+                <LinkItem href="https://github.com/williamhcarter">
+                    <Button variant="solid"
+                        leftIcon={<IoLogoGithub />}
+                    >
+                        Github
+                    </Button>
                 </LinkItem>
             
             <Box flex={0} align="right">
