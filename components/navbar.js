@@ -117,6 +117,9 @@ const Navbar = props => {
                             <MenuItem as={MenuLink} href="/contact">
                                 Contact
                             </MenuItem>
+                            <MenuItem as={MenuLink} href="https://github.com/williamhcarter">
+                                Github
+                            </MenuItem>
                         </MenuList>
                     </Menu>
                     <ThemeToggleButton/>
