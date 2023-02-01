@@ -40,7 +40,7 @@ const colors = {
 }
 
 const config = {
-  initialColorMode: 'dark',
+  initialColorMode: 'system',
   useSystemColorMode: true
 }
 
