@@ -10,7 +10,7 @@ const Main = ({children, router}) => {
             <title>Will Carter - Home</title>
             <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png"/>
             <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png"/>
-            <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png/">
+            <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png/"/>
         </Head>
         <Navbar path={router.asPath}/>
         <Container maxW="container.lg" pt={16}>
