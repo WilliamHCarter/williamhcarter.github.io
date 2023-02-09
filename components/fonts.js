@@ -1,7 +1,7 @@
-const Fonts = () =>{
-    <style jsx global>{`
-    @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@400;600&display=swap');
-  `}</style>
-}
+const Fonts = () => {
+  <style jsx global>{`
+    @import url("https://fonts.googleapis.com/css2?family=Poppins:wght@400;600&display=swap");
+  `}</style>;
+};
 
-export default Fonts
+export default Fonts;
