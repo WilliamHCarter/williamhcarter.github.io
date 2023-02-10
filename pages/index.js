@@ -11,7 +11,7 @@ const Page = () => {
       <WelcomeBanner />
       <Box display={{ md: "flex" }}>
         <Box flexGrow={1}>
-          <Heading as="h2" variant="page-title">
+          <Heading as="h2" fontWeight="600" variant="page-title">
             Will Carter
           </Heading>
           <p>Developer | Designer | Creative</p>

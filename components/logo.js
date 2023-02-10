@@ -22,7 +22,7 @@ const Logo = () => {
 
         <Text
           color={useColorModeValue("gray.800", "whiteAlpha.900")}
-          fontWeight={600}
+          fontWeight={700}
           ml={1}
         >
           Will Carter
