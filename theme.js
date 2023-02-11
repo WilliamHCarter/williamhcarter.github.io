@@ -33,7 +33,6 @@ const components = {
 
 const fonts = {
   heading: `'Poppins', sans-serif`,
-  semibold: `'Poppins', sans-serif`,
 }
 
 const colors = {

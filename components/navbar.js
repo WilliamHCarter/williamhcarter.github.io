@@ -75,6 +75,7 @@ const Navbar = (props) => {
           alignItems="center"
           justifyContent="flex-end"
           fontWeight="semibold"
+          fontFamily="Poppins"
           flexGrow={1}
           mt={{ base: 4, md: 0 }}
         >

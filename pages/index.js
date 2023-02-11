@@ -10,8 +10,8 @@ const Page = () => {
       <Box p={3} mb={6} align="center"></Box>
       <WelcomeBanner />
       <Box display={{ md: "flex" }}>
-        <Box flexGrow={1}>
-          <Heading as="h2" fontWeight="600" variant="page-title">
+        <Box flexGrow={1} mb={2}>
+          <Heading as="h2" fontWeight="600" variant="page-title" >
             Will Carter
           </Heading>
           <p>Developer | Designer | Creative</p>
@@ -30,7 +30,7 @@ const Page = () => {
           research for universities, and even large technical firms.
         </Paragraph>
       </Section>
-      <Section delay={0.2}>
+      <Section delay={0.2} mb={0}>
         <Work></Work>
       </Section>
       <Section delay={0.3}>

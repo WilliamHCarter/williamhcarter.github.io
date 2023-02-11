@@ -1,4 +1,4 @@
-import React, { useState, useRef, useEffect } from "react";
+import { useState, useRef, useEffect } from "react";
 import { Box } from "@chakra-ui/react";
 import Image from "next/image";
 
@@ -67,6 +67,7 @@ const ParallaxImage = ({ image }) => {
           maxWidth: "110%",
         }}
         src={image}
+        alt="thumbnail"
       />
     </Box>
   );
