@@ -2,6 +2,9 @@ import Layout from "../components/layouts/main";
 import Fonts from "../components/fonts";
 import { AnimatePresence } from "framer-motion";
 import Chakra from "../components/chakra";
+import '@fontsource/Poppins/400.css';
+import '@fontsource/Poppins/600.css';
+import '@fontsource/Poppins/700.css';
 
 if (typeof window !== "undefined") {
   window.history.scrollRestoration = "manual";
