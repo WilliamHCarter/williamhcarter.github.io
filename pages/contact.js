@@ -7,6 +7,7 @@ import {
   ListItem,
 } from "@chakra-ui/react";
 import { IoLogoGithub } from "react-icons/io5";
+import { IoLogoLinkedin } from "react-icons/io5";
 import { ChevronRightIcon, EmailIcon } from "@chakra-ui/icons";
 import Layout from "../components/layouts/article";
 const Contact = () => (
@@ -23,14 +24,25 @@ const Contact = () => (
               colorScheme="teal"
               leftIcon={<IoLogoGithub />}
             >
-              @WilliamHCarter
+              GitHub | WilliamHCarter
+            </Button>
+          </Link>
+        </ListItem>
+        <ListItem>
+          <Link href="https://www.linkedin.com/in/williamhcarter" target="_blank">
+            <Button
+              variant="ghost"
+              colorScheme="teal"
+              leftIcon={<IoLogoLinkedin />}
+            >
+              Linkedin | WilliamHCarter
             </Button>
           </Link>
         </ListItem>
         <ListItem>
           <Link href="mailto:cartew4@rpi.edu" target="_blank">
             <Button variant="ghost" colorScheme="teal" leftIcon={<EmailIcon />}>
-              cartew4@rpi.edu (English)
+              cartew4@rpi.edu
             </Button>
           </Link>
         </ListItem>
