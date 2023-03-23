@@ -1,0 +1,24 @@
+---
+export interface Props {
+  title: string;
+  body: string;
+  src: string;
+}
+
+const { src, title, body } = Astro.props;
+---
+
+<li class="link-card flex p-1  mb-8 ">
+  <a class="w-full no-underline leading-[1.4] flex flex-col">
+    <div class="w-full overflow-hidden w-full rounded">
+      <img class=" aspect-[16/10]" src={src} alt="Astro" />
+    </div>
+    <h2 class="text-xl mt-2 mb-0 ">
+      {title}
+    </h2>
+    <p class="text-dark mt-2 mb-0 mr-[15%]">
+      {body}
+    </p>
+  </a>
+</li>
+
