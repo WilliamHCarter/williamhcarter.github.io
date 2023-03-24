@@ -7,4 +7,4 @@
 <img alt="Tailwind" src="https://img.shields.io/badge/-TailwindCSS-06B6D4?style=flat-square&logo=tailwindcss&logoColor=white" height="25"/></p>
 
 ## Overview
-Thus portfolio webite is designed to be a minimal and interactive site to host my projects, while exploring a new web stack that I have found to be quite interesting. 
+Thus portfolio webite is designed to be a minimal and interactive site to host my projects, while exploring the workflow and features of a new web stack. 
