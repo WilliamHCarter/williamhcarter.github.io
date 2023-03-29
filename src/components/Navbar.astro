@@ -3,13 +3,36 @@ import MobileMenu from "../components/MobileMenu.astro";
 import Logo from "../components/Logo.astro";
 ---
 
-<div class=" flex justify-between items-center max-w-7xl mx-auto my-4 backdrop-blur-sm bg-[#ffffff60]">
+<div
+  class="flex justify-between items-center max-w-7xl mx-auto py-4 backdrop-blur-sm bg-[#ffffff60]"
+>
   <Logo />
   <MobileMenu />
-  <nav class="navlinks hidden pc:flex justify-end items-center gap-6 mr-[2vw]">
-    <a class="text-[1.1rem] text-dark font-semibold text-center no-underline m-0" href="#">Work</a>
-    <a class="text-[1.1rem] text-dark font-semibold text-center no-underline m-0" href="#op-about">Resume</a>
-    <a class="text-[1.1rem] text-dark font-semibold text-center no-underline m-0" href="#testm">Contact</a>
+  <nav class="navlinks hidden pc:flex justify-end items-center gap-8 mr-[2vw]">
+    <a class="text-dark font-semibold text-center hover:underline underline-offset-4 hover:text-teal no-underline m-0" href="#">
+      Work
+    </a>
+    <a
+      class="text-dark font-semibold text-center hover:underline underline-offset-4 hover:text-teal no-underline m-0"
+      href="/WillCarterResume.pdf"
+    >
+      Resume
+    </a>
+    <a
+      class="text-dark font-semibold text-center hover:underline underline-offset-4 hover:text-teal no-underline m-0"
+      href="#testm"
+    >
+      Contact
+    </a>
+    <div class="flex items-center px-4 py-2 bg-[#E2E8F0] hover:bg-[#CBD5E0] rounded-md transition-all duration-150 ease">
+      <img src="/github.svg" class="inline-block w-4 mr-2 filter grayscale contrast-[8500]" />
+      <a
+        class="text-dark text-base font-semibold hover:underline underline-offset-4 "
+        href="https://github.com/WilliamHCarter"
+      >
+        Github
+      </a>
+    </div>
   </nav>
 </div>
 <style>
