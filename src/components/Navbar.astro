@@ -1,5 +1,5 @@
 ---
-import MobileMenu from "../components/MobileMenu.astro";
+import MobileMenu from "../components/MobileMenu.jsx";
 import Logo from "../components/Logo.astro";
 ---
 
@@ -7,7 +7,9 @@ import Logo from "../components/Logo.astro";
   class="flex justify-between items-center max-w-7xl mx-auto py-4 backdrop-blur-sm bg-[#ffffff60]"
 >
   <Logo />
-  <MobileMenu />
+  <astro-fragment>
+    <MobileMenu client:load />
+  </astro-fragment>
   <nav class="navlinks hidden pc:flex justify-end items-center gap-8 mr-[2vw]">
     <a class="text-dark font-semibold text-center hover:underline underline-offset-4 hover:text-teal no-underline m-0" href="#">
       Work
