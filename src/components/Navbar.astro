@@ -4,12 +4,9 @@ import Logo from "../components/Logo.astro";
 ---
 
 <div
-  class="flex justify-between items-center max-w-7xl mx-auto py-4 backdrop-blur-sm bg-[#ffffff60]"
+  class="flex justify-between items-center max-w-7xl mx-auto px-2 py-4 backdrop-blur-sm bg-[#ffffff60]"
 >
   <Logo />
-  <astro-fragment>
-    <MobileMenu client:load />
-  </astro-fragment>
   <nav class="navlinks hidden pc:flex justify-end items-center gap-8 mr-[2vw]">
     <a class="text-dark font-semibold text-center hover:underline underline-offset-4 hover:text-teal no-underline m-0" href="#">
       Work
@@ -26,7 +23,7 @@ import Logo from "../components/Logo.astro";
     >
       Contact
     </a>
-    <div class="flex items-center px-4 py-2 bg-[#E2E8F0] hover:bg-[#CBD5E0] rounded-md transition-all duration-150 ease">
+    <div class="flex items-center px-4 py-2 bg-g hover:bg-ghl rounded-md transition-all duration-150 ease">
       <img src="/github.svg" class="inline-block w-4 mr-2 filter grayscale contrast-[8500]" />
       <a
         class="text-dark text-base font-semibold hover:underline underline-offset-4 "
@@ -36,6 +33,9 @@ import Logo from "../components/Logo.astro";
       </a>
     </div>
   </nav>
+  <astro-fragment class="pc:hidden">
+    <MobileMenu client:load />
+  </astro-fragment>
 </div>
 <style>
   h3 {
