@@ -1,41 +1,53 @@
 import { createSignal } from "solid-js";
 
-export default function HamburgerMenu() {
+function classNames(...classes) {
+  return classes.filter(Boolean).join(" ");
+}
+
+export default function Example() {
   const [isOpen, setIsOpen] = createSignal(false);
 
   const toggleMenu = () => {
     setIsOpen(!isOpen());
   };
 
+  const menuItems = [
+    { label: "About", href: "#" },
+    { label: "Work", href: "#" },
+    { label: "Resume", href: "#" },
+    { label: "Contact", href: "#" },
+    { label: "Github", href: "#" },
+
+  ];
+
   return (
     <>
       <button
-        class="bg-transparent border border-[#E2E8F0] border-solid w-10 h-10 mr-4 cursor-pointer flex justify-center items-center p-0"
+        class={`inline-flex w-full justify-center gap-x-1.5 rounded-md w-10 h-10 text-sm font-semibold text-gray-900 shadow-sm ring-1 ring-inset ring-ghl hover:bg-gray-50 ${classNames(
+          isOpen() ? "z-20" : ""
+        )}`}
         onClick={toggleMenu}
       >
-        <img src="/menu.svg" alt="Menu" class="pc:hidden w-4" />
+        <img src="menu.svg" class="w-6 h-6 mt-2 mb-2 center" />
       </button>
-      {isOpen() && (
-        <nav class="absolute top-full right-0 bg-white rounded shadow-md z-10">
-          <ul class="list-none m-0 p-0">
-            <li class="px-4 py-2">
-              <a href="/" class="text-gray-700 hover:text-blue-600">
-                Home
+
+      <div
+        class={`absolute right-0 z-10 mt-2 w-56 origin-top-right rounded-md  bg-offw shadow-lg ring-1 ring-black ring-opacity-5 focus:outline-none transition-all duration-200 ease-in-out transform ${
+          isOpen() ? "opacity-100 scale-100" : "opacity-0 scale-95"
+        }`}
+      >
+        <div class="py-1">
+          {menuItems.map((item) => {
+            const menuItemClass =
+              "block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100 hover:text-gray-900";
+            return (
+              <a href={item.href} class={menuItemClass}>
+                {item.label}
               </a>
-            </li>
-            <li class="px-4 py-2">
-              <a href="/work" class="text-gray-700 hover:text-blue-600">
-                Work
-              </a>
-            </li>
-            <li class="px-4 py-2">
-              <a href="/contact" class="text-gray-700 hover:text-blue-600">
-                Contact
-              </a>
-            </li>
-          </ul>
-        </nav>
-      )}
+            );
+          })}
+        </div>
+      </div>
     </>
   );
 }
