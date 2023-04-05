@@ -8,7 +8,10 @@ import Logo from "../components/Logo.astro";
 >
   <Logo />
   <nav class="navlinks hidden pc:flex justify-end items-center gap-8 mr-[2vw]">
-    <a class="text-dark font-semibold text-center hover:underline underline-offset-4 hover:text-teal no-underline m-0" href="#">
+    <a
+      class="text-dark font-semibold text-center hover:underline underline-offset-4 hover:text-teal no-underline m-0"
+      href="#"
+    >
       Work
     </a>
     <a
@@ -23,14 +26,14 @@ import Logo from "../components/Logo.astro";
     >
       Contact
     </a>
-    <div class="flex items-center px-4 py-2 bg-g hover:bg-ghl rounded-md transition-all duration-150 ease">
-      <img src="/github.svg" class="inline-block w-4 mr-2 filter grayscale contrast-[8500]" />
-      <a
-        class="text-dark text-base font-semibold hover:underline underline-offset-4 "
-        href="https://github.com/WilliamHCarter"
-      >
+    <div
+      class="flex items-center px-4 py-2 bg-g hover:bg-ghl rounded-md transition-all duration-150 ease relative"
+    >
+      <img class="inline-block w-4 mr-2 filter grayscale contrast-[8500]" src="/github.svg" alt="gh-icon" />
+      <a class="absolute inset-0 z-neg" href="https://github.com/WilliamHCarter"></a>
+      <p class="relative text-dark text-base font-semibold hover:underline underline-offset-4">
         Github
-      </a>
+      </p>
     </div>
   </nav>
   <astro-fragment class="pc:hidden">
