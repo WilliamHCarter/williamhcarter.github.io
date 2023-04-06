@@ -28,7 +28,7 @@ export default function Example() {
         )}`}
         onClick={toggleMenu}
       >
-        <img src="menu.svg" class="w-6 h-6 mt-2 mb-2 center" />
+        <img src="menu.svg" class="w-6 h-6 m-2 center" />
       </button>
 
       <div
