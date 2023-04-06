@@ -27,16 +27,16 @@ export default function Example() {
   return (
     <>
       <button
-        class={`inline-flex w-full justify-center gap-x-1.5 rounded-md w-10 h-10 shadow-sm ring-1 ring-inset ring-ghl hover:bg-gray-50 ${classNames(
+        class={`inline-flex justify-center gap-x-1.5 rounded-md w-10 h-10 dark:bg-[#ffffff16] border border-solid border-[#e2e8f0] dark:border-[#ffffff29] hover:bg-gray-50 ${classNames(
           isOpen() ? "z-20" : "z-0"
         )}`}
         onClick={toggleMenu}
       >
-        <img src="menu.svg" class="w-6 h-6 m-2 center" />
+        <img src="menu.svg" class=" w-5 h-5 m-2 self-center dark:invert" />
       </button>
 
       <div
-        class={`absolute right-0 z-10 mt-12 bg-offw dark:bg-[#2D3748] w-56 origin-top-right rounded-md  shadow-lg ring-1 ring-black ring-opacity-5 focus:outline-none transition-all duration-200 ease-in-out transform ${
+        class={`absolute right-0 z-10 mt-12 bg-offw dark:bg-[#2D3748] w-56 origin-top-right rounded-md  shadow-lg  border border-solid border-[#ffffff29] focus:outline-none transition-all duration-200 ease-in-out transform ${
           isOpen() ? "opacity-100 scale-100" : "opacity-0 hidden scale-95"
         }`}
       >

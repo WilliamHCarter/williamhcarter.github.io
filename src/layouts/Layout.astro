@@ -17,26 +17,31 @@ import Navbar from "../components/Navbar.astro";
     <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
     <meta name="generator" content={Astro.generator} />
     <title>{title}</title>
-    
+
     <!-- Theme Script -->
     <script is:inline>
       const theme = (() => {
         if (typeof localStorage !== "undefined" && localStorage.getItem("theme")) {
-        return localStorage.getItem("theme");
+          return localStorage.getItem("theme");
         }
         if (window.matchMedia("(prefers-color-scheme: dark)").matches) {
-        return "dark";
+          return "dark";
         }
         return "light";
       })();
-      
+
       if (theme === "light") {
         document.documentElement.classList.remove("dark");
       } else {
         document.documentElement.classList.add("dark");
       }
       window.localStorage.setItem("theme", theme);
-      </script>
+      let currentTheme = localStorage.getItem("theme");
+      if (currentTheme != null) {
+        document.documentElement.setAttribute("data-theme", currentTheme);
+        localStorage.setItem("theme", currentTheme);
+      }
+    </script>
   </head>
   <div class="fixed w-full mx-auto">
     <Navbar />
@@ -44,18 +49,17 @@ import Navbar from "../components/Navbar.astro";
   <body>
     <slot />
   </body>
+
+
+  <style>
+    html[data-theme="light"] {
+      background-color: rgb(252, 250, 249);
+      color: #202023;
+    }
+
+    html[data-theme="dark"] {
+      background-color: #202023;
+      color: #f7f8f8;
+    }
+  </style>
 </html>
-
-<style>
-
-
-html[data-theme='light'] {
-    background-color: rgb(252, 250, 249);
-    color: #202023;
-}
-
-html[data-theme='dark'] {
-    background-color: #202023;
-    color: #F7F8F8;
-}
-</style>
