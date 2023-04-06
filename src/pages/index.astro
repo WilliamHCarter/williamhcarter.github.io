@@ -1,19 +1,13 @@
 ---
 import Layout from "../layouts/Layout.astro";
-import WorkCard from "../components/WorkCard.astro";
-import Navbar from "../components/Navbar.astro";
 import Hero from "../components/Hero.astro";
 import Work from "../components/Work.astro";
 import Contact from "../components/Contact.astro";
-import HamburgerMenu from '../components/MobileMenu.jsx';
 ---
 
 <Layout title="Will Carter Portfolio">
   <main class="flex flex-col bg-offw">
-    <div class=" fixed w-full mx-auto">
-      <Navbar />
-    </div>
-    <div class="container-lg max-w-5xl px-4 mt-20 mx-auto">
+    <div class="container-lg max-w-5xl mt-20 px-4 mx-auto">
       <Hero />
       <Work />
       <Contact />

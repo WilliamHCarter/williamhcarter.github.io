@@ -12,11 +12,11 @@ export default function Example() {
   };
 
   const menuItems = [
-    { label: "About", href: "#" },
-    { label: "Work", href: "#" },
-    { label: "Resume", href: "#" },
-    { label: "Contact", href: "#" },
-    { label: "Github", href: "#" },
+    { label: "About", href: "/" },
+    { label: "Work", href: "/work" },
+    { label: "Resume", href: "/WillCarterResume.pdf" },
+    { label: "Contact", href: "/contact" },
+    { label: "Github", href: "https://github.com/WilliamHCarter" },
 
   ];
 
