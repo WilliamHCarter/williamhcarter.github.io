@@ -11,8 +11,8 @@ const {src, title, body, link } = Astro.props;
 
 <div class="link-card flex p-1  mb-8 ">
   <a class="w-full no-underline leading-[1.4] flex flex-col" href={link}>
-    <div class="w-full overflow-hidden w-full rounded">
-      <img id="img" class="image object-cover aspect-[16/10]" src={src} alt="Astro" />
+    <div class="w-full overflow-hidden rounded">
+      <img class="img image object-cover scale-110 aspect-[16/10]" src={src} alt="Astro" />
     </div>
     <h2 class="text-xl mt-2 mb-0 ">
       {title}
@@ -23,18 +23,5 @@ const {src, title, body, link } = Astro.props;
   </a>
 </div>
 
-<script>
-	const hero = document.getElementById("img")!;
-	window.addEventListener("scroll", () => {
-	  let { scrollY } = window;
-	  const yScroll = ((scrollY * 2) / window.innerHeight) * 0.6;
-	  const scrollPercentage = Math.max(Math.min(yScroll, 1), 0) * -50 + 50;
-	  console.log(scrollPercentage);
-	  hero.animate(
-		{
-		  objectPosition: `center ${scrollPercentage}%`,
-		},
-		{ duration: 400, fill: "forwards" }
-	  );
-	});
-  </script>
+
+
