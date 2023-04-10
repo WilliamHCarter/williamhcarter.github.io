@@ -23,21 +23,25 @@ import WorkCard from "./WorkCard.astro";
     link="https://github.com/WilliamHCarter/LD46"
   />
 </div>
-<script>
-  const hero = document.getElementsByClassName("img");
-  window.addEventListener("scroll", () => {
-    const { scrollY } = window;
-    const yScroll = ((scrollY * 2) / window.innerHeight) * 0.6;
-    const scrollPercentage = Math.max(Math.min(yScroll, 1), 0) * 250 + 50;
 
-    for (var i = 0; i < hero.length; i++) {
-      hero[i].animate(
+<!-- Parallax image effect for Cards -->
+<script>
+  const heroes = document.querySelectorAll(".img");
+  const parallaxEffect = () => {
+    const scrollY = window.scrollY;
+    const yScroll = ((scrollY) / window.innerHeight) * 1.2;
+    const scrollPercentage = Math.max(Math.min(yScroll, 1), 0) * 180;
+
+    heroes.forEach((hero) => {
+      hero.animate(
         {
           objectPosition: `center ${scrollPercentage}%`,
         },
-        { duration: 700, fill: "forwards" }
+        { duration: 500, fill: "forwards" }
       );
-    }
-    //hero.style.objectPosition = `center ${scrollPercentage}%`;
-  });
+    });
+  };
+
+  window.addEventListener("scroll", parallaxEffect);
 </script>
+
