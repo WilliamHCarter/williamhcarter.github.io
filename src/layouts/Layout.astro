@@ -5,6 +5,12 @@ export interface Props {
 
 const { title } = Astro.props;
 import Navbar from "../components/Navbar.astro";
+import "@fontsource/poppins/400.css";
+import "@fontsource/poppins/500.css";
+import "@fontsource/poppins/600.css";
+import "@fontsource/inter/400.css";
+import "@fontsource/inter/500.css";
+import "@fontsource/inter/600.css";
 ---
 
 <!DOCTYPE html>
@@ -50,7 +56,6 @@ import Navbar from "../components/Navbar.astro";
     <slot />
   </body>
 
-
   <style>
     html[data-theme="light"] {
       background-color: rgb(252, 250, 249);
@@ -61,5 +66,21 @@ import Navbar from "../components/Navbar.astro";
       background-color: #202023;
       color: #f7f8f8;
     }
+
+    @font-face {
+      font-family: "s";
+      src: url("/fonts/s.woff2") format("woff2");
+      font-weight: normal;
+      font-style: normal;
+      font-display: swap;
+    }
+    @font-face {
+      font-family: "s";
+      src: url("/fonts/s.woff2") format("woff2");
+      font-weight: bold;
+      font-style: normal;
+      font-display: swap;
+    }
   </style>
+
 </html>
