@@ -30,9 +30,10 @@ export default function Example() {
         class={`inline-flex justify-center gap-x-1.5 rounded-md w-10 h-10 dark:bg-[#ffffff16] border border-solid border-[#e2e8f0] dark:border-[#ffffff29] hover:bg-gray-50 ${classNames(
           isOpen() ? "z-20" : "z-0"
         )}`}
+        aria-label="Menu"
         onClick={toggleMenu}
       >
-        <img src="menu.svg" class=" w-5 h-5 m-2 self-center dark:invert" />
+        <img src="menu.svg" alt="menu" class=" w-5 h-5 m-2 self-center dark:invert" />
       </button>
 
       <div
