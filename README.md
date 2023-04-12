@@ -1,4 +1,4 @@
-# Personal Portfolio Website [WIP]
+# Personal Portfolio Website
 
 > Fast and responsive portfolio website, designed with a modern web stack.
 
