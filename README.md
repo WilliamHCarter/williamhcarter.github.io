@@ -9,8 +9,6 @@
 
 ## Overview
 
-This portfolio webite is designed to be a minimal and interactive site to host my projects, while exploring the workflow and features of a new web stack.
-=======
 This portfolio website is designed to be a minimal and interactive site to showcase my projects while exploring the workflow and features of a new web stack. Astro and SolidJS were chosen for their strong combination of partial hydration and a small framework bundle size, resulting in a very fast, yet still reactive web experience. The design is enhanced by the power of Tailwind CSS for responsive styling and consistent visuals.
 
 ## Features
