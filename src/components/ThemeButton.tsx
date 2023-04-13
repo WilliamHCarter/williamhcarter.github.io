@@ -25,9 +25,9 @@ export default function ThemeButton() {
       onClick={toggleTheme}
     >
       {theme() === "light" ? (
-        <img src="moon.svg" alt="moon-icon" class=" w-5 h-5 m-2 self-center invert" />
+        <img src="/../moon.svg" alt="moon-icon" class=" w-5 h-5 m-2 self-center invert" />
       ) : (
-        <img src="sun.svg" alt="sun-icon" class=" w-5 h-5 m-2 self-center " />
+        <img src="/../sun.svg" alt="sun-icon" class=" w-5 h-5 m-2 self-center " />
       )}
     </button>
   );
