@@ -33,7 +33,7 @@ export default function Example() {
         aria-label="Menu"
         onClick={toggleMenu}
       >
-        <img src="menu.svg" alt="menu" class=" w-5 h-5 m-2 self-center dark:invert" />
+        <img src="/../menu.svg" alt="menu" class=" w-5 h-5 m-2 self-center dark:invert" />
       </button>
 
       <div
