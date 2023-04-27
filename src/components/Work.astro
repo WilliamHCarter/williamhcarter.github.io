@@ -9,7 +9,18 @@ import WorkCard from "./WorkCard.astro";
     Work
   </h3>
 </div>
-<div class="grid grid-cols-[repeat(auto-fit,minmax(24ch,1fr))] gap-4 p-0">
+<div class="grid grid-cols-[repeat(auto-fit,minmax(35ch,1fr))] gap-4 p-0">
+  <WorkCard
+  src="/movinghomes.webp"
+  srcmobile="/movinghomes.webp"
+  title="Moving Homes Together Website"
+  body="A simple, professional website built with Astro and TailwindCSS."
+  link="https://github.com/WilliamHCarter/movingtogetherwebsite"
+  techStack={[
+    {alt: "Astro", src: "https://img.shields.io/badge/-Astro-FF5D01?style=flat-square&logo=astro&logoColor=white"},
+    {alt: "TailwindCSS", src: "https://img.shields.io/badge/-TailwindCSS-06B6D4?style=flat-square&logo=tailwindcss&logoColor=white"},
+  ]}
+/>
   <WorkCard
     src="/BBOT.webp"
     srcmobile="/BBOT-mobile.webp"
@@ -27,7 +38,7 @@ import WorkCard from "./WorkCard.astro";
     body="Experimental physics game created with Unity for Ludum Dare 46."
     link="https://github.com/WilliamHCarter/LD46"
     techStack={[
-      {alt: "C#", src: "https://img.shields.io/badge/-CSharp-800080?style=flat-square&logo=csharp&logoColor=white"},
+      {alt: "C#", src: "https://img.shields.io/badge/-CSharp-561eba?style=flat-square&logo=csharp&logoColor=white"},
       {alt: "Unity", src: "https://img.shields.io/badge/-Unity-000000?style=flat-square&logo=unity&logoColor=white"}
     ]}
   />
