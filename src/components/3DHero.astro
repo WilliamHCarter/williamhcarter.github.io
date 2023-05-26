@@ -18,7 +18,7 @@ onMount(() => {
   divRef.appendChild(renderer.domElement);
 
   const loader = new OBJLoader();
-  loader.load('/path/to/foobar.obj', (obj) => {
+  loader.load('/public/rounded_less.obj', (obj) => {
     model = obj;
     scene.add(obj);
   });

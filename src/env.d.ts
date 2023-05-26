@@ -24,6 +24,3 @@ declare module 'three/examples/jsm/loaders/OBJLoader' {
       dispose(): void;
     }
   }
-  declare module 'three' {
-    // You can declare additional or override existing types here.
-  }  
