@@ -1,4 +1,4 @@
-import { createSignal, onMount } from "solid-js";
+import { createSignal, onMount, onCleanup } from "solid-js";
 import * as THREE from 'three';
 
 interface My3DComponentProps {
@@ -6,18 +6,21 @@ interface My3DComponentProps {
 }
 
 function My3DComponent(props: My3DComponentProps) {
-  let canvas: HTMLCanvasElement | undefined;
+  let section: HTMLElement | undefined;
   const [width, setWidth] = createSignal(0);
   const [height, setHeight] = createSignal(0);
 
   onMount(() => {
+    if (!section) return;
+
+    const canvas = section.querySelector('canvas');
     if (!canvas) return;
+
+    setWidth(section.clientWidth);
+    setHeight(section.clientHeight);
 
     const scene = new THREE.Scene();
     scene.background = new THREE.Color(0xeeeeee); // Set the background color
-
-    setWidth(window.innerWidth);
-    setHeight(window.innerHeight * 0.5);
 
     const camera = new THREE.PerspectiveCamera(75, width() / height(), 0.1, 1000);
     camera.position.z = 5;
@@ -43,24 +46,34 @@ function My3DComponent(props: My3DComponentProps) {
     }
     animate();
 
-    window.addEventListener('resize', () => {
-      const newWidth = window.innerWidth;
-      const newHeight = window.innerHeight * 0.5; // Adjust according to your requirements
+    const resizeObserver = new ResizeObserver(entries => {
+      for (let entry of entries) {
+        if (entry.target === section) {
+          const newWidth = entry.contentRect.width;
+          const newHeight = entry.contentRect.height;
 
-      setWidth(newWidth);
-      setHeight(newHeight);
+          setWidth(newWidth);
+          setHeight(newHeight);
 
-      camera.aspect = newWidth / newHeight;
-      camera.updateProjectionMatrix();
+          camera.aspect = newWidth / newHeight;
+          camera.updateProjectionMatrix();
 
-      renderer.setSize(newWidth, newHeight);
+          renderer.setSize(newWidth, newHeight);
+        }
+      }
+    });
+
+    resizeObserver.observe(section);
+
+    onCleanup(() => {
+      resizeObserver.disconnect();
     });
   });
 
   return (
-    <>
-      <canvas ref={canvas} style={props.style}></canvas>
-    </>
+    <section ref={section} style={props.style}>
+      <canvas></canvas>
+    </section>
   );
 }
 
