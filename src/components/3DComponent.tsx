@@ -1,63 +1,92 @@
-import { createSignal, onCleanup, onMount } from 'solid-js';
-import { OBJLoader } from 'three/examples/jsm/loaders/OBJLoader';
-import { OrbitControls } from 'three/examples/jsm/controls/OrbitControls';
-import * as THREE from 'three';
+import { createSignal, onMount, onCleanup } from "solid-js";
+import * as THREE from "three";
 
-function ThreeComponent() {
-  let divRef;
-  let scene, camera, renderer, controls;
+interface My3DComponentProps {
+  style?: string;
+}
+
+function My3DComponent(props: My3DComponentProps) {
+  let section: HTMLElement | undefined;
+  const [width, setWidth] = createSignal(0);
+  const [height, setHeight] = createSignal(0);
 
   onMount(() => {
-    divRef = document.createElement('div');
-    document.body.appendChild(divRef);
+    if (!section) return;
 
-    scene = new THREE.Scene();
-    camera = new THREE.PerspectiveCamera(75, window.innerWidth/window.innerHeight, 0.1, 1000);
-    renderer = new THREE.WebGLRenderer({ antialias: true });
-    renderer.setSize(window.innerWidth, window.innerHeight);
-    divRef.appendChild(renderer.domElement);
+    const canvas = section.querySelector("canvas");
+    if (!canvas) return;
 
-    const loader = new OBJLoader();
-    loader.load('/path/to/foobar.obj', (obj) => {
-      scene.add(obj);
-    });
+    setWidth(section.clientWidth);
+    setHeight(section.clientHeight);
 
-    const light = new THREE.PointLight(0xffffff, 1);
-    light.position.set(50, 50, 50);
-    scene.add(light);
+    const scene = new THREE.Scene();
+    scene.background = new THREE.Color(0xeeeeee); // Set the background color
 
+    const camera = new THREE.PerspectiveCamera(75, width() / height(), 0.1, 1000);
     camera.position.z = 5;
 
-    controls = new OrbitControls(camera, renderer.domElement);
+    const renderer = new THREE.WebGLRenderer({ canvas: canvas, alpha: true });
+    renderer.setSize(width(), height());
 
-    const animate = function () {
+    // Add lighting
+    const ambientLight = new THREE.AmbientLight(0xffffff);
+    scene.add(ambientLight);
+
+    // Add object to scene
+    const geometry = new THREE.BoxGeometry(1, 1, 1);
+    const material = new THREE.MeshBasicMaterial({ color: 0x00ff00 });
+    const cube = new THREE.Mesh(geometry, material);
+    scene.add(cube);
+
+    function animate() {
       requestAnimationFrame(animate);
-      controls.update();
+      cube.rotation.x += 0.01;
+      cube.rotation.y += 0.01;
       renderer.render(scene, camera);
-    };
-
+    }
     animate();
 
-    const resize = () => {
-      camera.aspect = window.innerWidth / window.innerHeight;
-      camera.updateProjectionMatrix();
-      renderer.setSize(window.innerWidth, window.innerHeight);
-    }
+    let resizeTimeout: number | undefined;
+    const handleResize = (entries: ResizeObserverEntry[]) => {
+      // Debounce resize events
+      if (resizeTimeout !== undefined) {
+        clearTimeout(resizeTimeout);
+      }
 
-    window.addEventListener('resize', resize, false);
+      resizeTimeout = setTimeout(() => {
+        for (let entry of entries) {
+          if (entry.target === section) {
+            const newWidth = entry.contentRect.width;
+            const newHeight = entry.contentRect.height;
+
+            setWidth(newWidth);
+            setHeight(newHeight);
+
+            camera.aspect = newWidth / newHeight;
+            camera.updateProjectionMatrix();
+
+            renderer.setSize(newWidth, newHeight);
+          }
+        }
+      }, 100); // delay of 100ms
+    };
+
+    const resizeObserver = new ResizeObserver(handleResize);
+    resizeObserver.observe(section);
 
     onCleanup(() => {
-      window.removeEventListener('resize', resize, false);
-      // Dispose your three.js instances here
-      scene.dispose();
-      renderer.dispose();
-      controls.dispose();
+      resizeObserver.disconnect();
+      if (resizeTimeout !== undefined) {
+        clearTimeout(resizeTimeout);
+      }
     });
   });
 
   return (
-    <div style="width: 100%; height: 100vh;"></div>
+    <section ref={section} style={props.style}>
+      <canvas></canvas>
+    </section>
   );
 }
 
-export default ThreeComponent;
+export default My3DComponent;
