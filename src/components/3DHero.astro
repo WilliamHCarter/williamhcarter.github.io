@@ -1,52 +1,10 @@
 ---
-import { onMount } from 'solid-js';
-import { OBJLoader } from 'three/examples/jsm/loaders/OBJLoader';
-import { OrbitControls } from 'three/examples/jsm/controls/OrbitControls';
-import * as THREE from 'three';
+import My3DComponent from './3DComponent.jsx';
 ---
 
-<script setup lang="ts">
-let scene, camera, renderer, controls, model;
-
-onMount(() => {
-  const divRef = document.getElementById('modelContainer');  // Get a reference to the element
-
-  scene = new THREE.Scene();
-  camera = new THREE.PerspectiveCamera(75, window.innerWidth/window.innerHeight, 0.1, 1000);
-  renderer = new THREE.WebGLRenderer({ antialias: true });
-  renderer.setSize(window.innerWidth, window.innerHeight);
-  divRef.appendChild(renderer.domElement);
-
-  const loader = new OBJLoader();
-  loader.load('/public/rounded_less.obj', (obj) => {
-    model = obj;
-    scene.add(obj);
-  });
-
-  const light = new THREE.PointLight(0xffffff, 1);
-  light.position.set(50, 50, 50);
-  scene.add(light);
-
-  camera.position.z = 5;
-
-  controls = new OrbitControls(camera, renderer.domElement);
-
-  const animate = function () {
-    requestAnimationFrame(animate);
-    controls.update();
-    renderer.render(scene, camera);
-  };
-  
-  animate();
-});
-
-const resize = () => {
-  camera.aspect = window.innerWidth / window.innerHeight;
-  camera.updateProjectionMatrix();
-  renderer.setSize(window.innerWidth, window.innerHeight);
-}
-
-window.addEventListener('resize', resize, false);
-</script>
-
-<div id="modelContainer" style="width: 100%; height: 100vh;"></div>
+<section style="width: 100%; height: 50vh; position: relative;">
+  <My3DComponent client:load style="position: absolute; top: 0; left: 0; width: 100%; height: 100%" />
+  <div style="position: relative;">
+    <!-- Your content goes here -->
+  </div>
+</section>

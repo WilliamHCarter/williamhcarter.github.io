@@ -1,63 +1,67 @@
-import { createSignal, onCleanup, onMount } from 'solid-js';
-import { OBJLoader } from 'three/examples/jsm/loaders/OBJLoader';
-import { OrbitControls } from 'three/examples/jsm/controls/OrbitControls';
+import { createSignal, onMount } from "solid-js";
 import * as THREE from 'three';
 
-function ThreeComponent() {
-  let divRef;
-  let scene, camera, renderer, controls;
+interface My3DComponentProps {
+  style?: string;
+}
+
+function My3DComponent(props: My3DComponentProps) {
+  let canvas: HTMLCanvasElement | undefined;
+  const [width, setWidth] = createSignal(0);
+  const [height, setHeight] = createSignal(0);
 
   onMount(() => {
-    divRef = document.createElement('div');
-    document.body.appendChild(divRef);
+    if (!canvas) return;
 
-    scene = new THREE.Scene();
-    camera = new THREE.PerspectiveCamera(75, window.innerWidth/window.innerHeight, 0.1, 1000);
-    renderer = new THREE.WebGLRenderer({ antialias: true });
-    renderer.setSize(window.innerWidth, window.innerHeight);
-    divRef.appendChild(renderer.domElement);
+    const scene = new THREE.Scene();
+    scene.background = new THREE.Color(0xeeeeee); // Set the background color
 
-    const loader = new OBJLoader();
-    loader.load('/path/to/foobar.obj', (obj) => {
-      scene.add(obj);
-    });
+    setWidth(window.innerWidth);
+    setHeight(window.innerHeight * 0.5);
 
-    const light = new THREE.PointLight(0xffffff, 1);
-    light.position.set(50, 50, 50);
-    scene.add(light);
-
+    const camera = new THREE.PerspectiveCamera(75, width() / height(), 0.1, 1000);
     camera.position.z = 5;
 
-    controls = new OrbitControls(camera, renderer.domElement);
+    const renderer = new THREE.WebGLRenderer({ canvas: canvas, alpha: true });
+    renderer.setSize(width(), height());
 
-    const animate = function () {
+    // Add lighting
+    const ambientLight = new THREE.AmbientLight(0xffffff);
+    scene.add(ambientLight);
+
+    // Add object to scene
+    const geometry = new THREE.BoxGeometry(1, 1, 1);
+    const material = new THREE.MeshBasicMaterial({ color: 0x00ff00 });
+    const cube = new THREE.Mesh(geometry, material);
+    scene.add(cube);
+
+    function animate() {
       requestAnimationFrame(animate);
-      controls.update();
+      cube.rotation.x += 0.01;
+      cube.rotation.y += 0.01;
       renderer.render(scene, camera);
-    };
-
+    }
     animate();
 
-    const resize = () => {
-      camera.aspect = window.innerWidth / window.innerHeight;
+    window.addEventListener('resize', () => {
+      const newWidth = window.innerWidth;
+      const newHeight = window.innerHeight * 0.5; // Adjust according to your requirements
+
+      setWidth(newWidth);
+      setHeight(newHeight);
+
+      camera.aspect = newWidth / newHeight;
       camera.updateProjectionMatrix();
-      renderer.setSize(window.innerWidth, window.innerHeight);
-    }
 
-    window.addEventListener('resize', resize, false);
-
-    onCleanup(() => {
-      window.removeEventListener('resize', resize, false);
-      // Dispose your three.js instances here
-      scene.dispose();
-      renderer.dispose();
-      controls.dispose();
+      renderer.setSize(newWidth, newHeight);
     });
   });
 
   return (
-    <div style="width: 100%; height: 100vh;"></div>
+    <>
+      <canvas ref={canvas} style={props.style}></canvas>
+    </>
   );
 }
 
-export default ThreeComponent;
+export default My3DComponent;
