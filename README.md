@@ -16,6 +16,7 @@ This portfolio website is designed to be a minimal and interactive site to showc
 - Fast performance due to optimized static site generation with Astro
 - Reactive UI components powered by SolidJS for seamless user experience
 - Modern and responsive design with the help of Tailwind CSS
+- 3D hero section created using ThreeJS
 - Lazy loading of images and other media for faster loading times
 - Automatic support for light and dark mode
 - SEO-friendly metadata and structure for improved search rankings
