@@ -1,5 +1,5 @@
 import { createSignal, onMount, onCleanup } from "solid-js";
-import * as THREE from 'three';
+import * as THREE from "three";
 
 interface My3DComponentProps {
   style?: string;
@@ -13,7 +13,7 @@ function My3DComponent(props: My3DComponentProps) {
   onMount(() => {
     if (!section) return;
 
-    const canvas = section.querySelector('canvas');
+    const canvas = section.querySelector("canvas");
     if (!canvas) return;
 
     setWidth(section.clientWidth);
@@ -46,27 +46,39 @@ function My3DComponent(props: My3DComponentProps) {
     }
     animate();
 
-    const resizeObserver = new ResizeObserver(entries => {
-      for (let entry of entries) {
-        if (entry.target === section) {
-          const newWidth = entry.contentRect.width;
-          const newHeight = entry.contentRect.height;
-
-          setWidth(newWidth);
-          setHeight(newHeight);
-
-          camera.aspect = newWidth / newHeight;
-          camera.updateProjectionMatrix();
-
-          renderer.setSize(newWidth, newHeight);
-        }
+    let resizeTimeout: number | undefined;
+    const handleResize = (entries: ResizeObserverEntry[]) => {
+      // Debounce resize events
+      if (resizeTimeout !== undefined) {
+        clearTimeout(resizeTimeout);
       }
-    });
 
+      resizeTimeout = setTimeout(() => {
+        for (let entry of entries) {
+          if (entry.target === section) {
+            const newWidth = entry.contentRect.width;
+            const newHeight = entry.contentRect.height;
+
+            setWidth(newWidth);
+            setHeight(newHeight);
+
+            camera.aspect = newWidth / newHeight;
+            camera.updateProjectionMatrix();
+
+            renderer.setSize(newWidth, newHeight);
+          }
+        }
+      }, 100); // delay of 100ms
+    };
+
+    const resizeObserver = new ResizeObserver(handleResize);
     resizeObserver.observe(section);
 
     onCleanup(() => {
       resizeObserver.disconnect();
+      if (resizeTimeout !== undefined) {
+        clearTimeout(resizeTimeout);
+      }
     });
   });
 
