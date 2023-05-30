@@ -1,11 +1,11 @@
 import { createEffect, createSignal } from "solid-js";
 
 export default function ThemeButton() {
-  const [theme, setTheme] = createSignal<string>(localStorage.getItem("theme") ?? "light");
+  const [theme, setTheme] = createSignal(localStorage.getItem("theme") ?? "light");
 
   const toggleTheme = () => {
     setTheme((currentTheme) => (currentTheme === "light" ? "dark" : "light"));
-    let currentTheme = localStorage.getItem("theme");
+    let currentTheme = theme();
     if (currentTheme != null) {
       document.documentElement.setAttribute("data-theme", currentTheme);
       localStorage.setItem("theme", currentTheme);
