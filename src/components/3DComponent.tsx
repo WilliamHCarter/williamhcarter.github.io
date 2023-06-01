@@ -20,7 +20,6 @@ function My3DComponent(props: My3DComponentProps) {
     setHeight(section.clientHeight);
 
     const scene = new THREE.Scene();
-    scene.background = new THREE.Color(0xeeeeee); // Set the background color
 
     const camera = new THREE.PerspectiveCamera(75, width() / height(), 0.1, 1000);
     camera.position.z = 5;
@@ -84,7 +83,7 @@ function My3DComponent(props: My3DComponentProps) {
 
   return (
     <section ref={section} style={props.style}>
-      <canvas></canvas>
+      <canvas class="bg-offw dark:bg-dark"></canvas>
     </section>
   );
 }
