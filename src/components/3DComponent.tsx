@@ -1,5 +1,7 @@
 import { createSignal, onMount, onCleanup } from "solid-js";
 import * as THREE from "three";
+import { MTLLoader } from 'three/examples/jsm/loaders/MTLLoader.js';
+import { OBJLoader } from 'three/examples/jsm/loaders/OBJLoader.js';
 
 interface My3DComponentProps {
   style?: string;
@@ -7,6 +9,7 @@ interface My3DComponentProps {
 
 function My3DComponent(props: My3DComponentProps) {
   let section: HTMLElement | undefined;
+  let loadedObject: THREE.Object3D | null = null;
   const [width, setWidth] = createSignal(0);
   const [height, setHeight] = createSignal(0);
 
@@ -31,16 +34,34 @@ function My3DComponent(props: My3DComponentProps) {
     const ambientLight = new THREE.AmbientLight(0xffffff);
     scene.add(ambientLight);
 
-    // Add object to scene
-    const geometry = new THREE.BoxGeometry(1, 1, 1);
-    const material = new THREE.MeshBasicMaterial({ color: 0x00ff00 });
-    const cube = new THREE.Mesh(geometry, material);
-    scene.add(cube);
+    // Load an MTL file
+    const mtlLoader = new MTLLoader();
+    mtlLoader.load('../rounded_less.mtl', (materials) => {
+      materials.preload();
+  
+      const objLoader = new OBJLoader();
+      objLoader.setMaterials(materials);
+  
+      objLoader.load('../rounded_less.obj', (object) => {
+        loadedObject = object;
+        scene.add(object);
+      },
+      // onProgress callback
+      function ( xhr ) {
+        console.log( (xhr.loaded / xhr.total * 100) + '% loaded' );
+      },
+      // onError callback
+      function ( err ) {
+        console.error( 'An error happened' );
+      });
+    });
 
     function animate() {
       requestAnimationFrame(animate);
-      cube.rotation.x += 0.01;
-      cube.rotation.y += 0.01;
+      if (loadedObject !== null) {
+        loadedObject.rotation.x += 0.01;
+        loadedObject.rotation.y += 0.01;
+      }
       renderer.render(scene, camera);
     }
     animate();
