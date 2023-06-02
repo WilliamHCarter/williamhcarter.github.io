@@ -1,7 +1,7 @@
 import { createSignal, onMount, onCleanup } from "solid-js";
 import * as THREE from "three";
-import { MTLLoader } from 'three/examples/jsm/loaders/MTLLoader.js';
-import { OBJLoader } from 'three/examples/jsm/loaders/OBJLoader.js';
+import { MTLLoader } from "three/examples/jsm/loaders/MTLLoader.js";
+import { OBJLoader } from "three/examples/jsm/loaders/OBJLoader.js";
 
 interface My3DComponentProps {
   style?: string;
@@ -36,24 +36,27 @@ function My3DComponent(props: My3DComponentProps) {
 
     // Load an MTL file
     const mtlLoader = new MTLLoader();
-    mtlLoader.load('../rounded_less.mtl', (materials) => {
+    mtlLoader.load("../rounded_less.mtl", (materials) => {
       materials.preload();
-  
+
       const objLoader = new OBJLoader();
       objLoader.setMaterials(materials);
-  
-      objLoader.load('../rounded_less.obj', (object) => {
-        loadedObject = object;
-        scene.add(object);
-      },
-      // onProgress callback
-      function ( xhr ) {
-        console.log( (xhr.loaded / xhr.total * 100) + '% loaded' );
-      },
-      // onError callback
-      function ( err ) {
-        console.error( 'An error happened' );
-      });
+
+      objLoader.load(
+        "../rounded_less.obj",
+        (object) => {
+          loadedObject = object;
+          scene.add(object);
+        },
+        // onProgress callback
+        function (xhr) {
+          console.log((xhr.loaded / xhr.total) * 100 + "% loaded");
+        },
+        // onError callback
+        function (err) {
+          console.error("An error happened");
+        }
+      );
     });
 
     function animate() {
