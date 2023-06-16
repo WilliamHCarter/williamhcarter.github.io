@@ -10,6 +10,7 @@ interface My3DComponentProps {
 function My3DComponent(props: My3DComponentProps) {
   let section: HTMLElement | undefined;
   let loadedObject: THREE.Object3D | null = null;
+  let time = 0;
   const [width, setWidth] = createSignal(0);
   const [height, setHeight] = createSignal(0);
 
@@ -25,18 +26,43 @@ function My3DComponent(props: My3DComponentProps) {
     const scene = new THREE.Scene();
 
     const camera = new THREE.PerspectiveCamera(75, width() / height(), 0.1, 1000);
-    camera.position.z = 5;
+    camera.position.z = 3;
 
-    const renderer = new THREE.WebGLRenderer({ canvas: canvas, alpha: true });
+    const renderer = new THREE.WebGLRenderer({ canvas: canvas, alpha: true, antialias: true });
+    renderer.shadowMap.enabled = true;
+    renderer.shadowMap.type = THREE.PCFSoftShadowMap;
     renderer.setSize(width(), height());
 
     // Add lighting
     const ambientLight = new THREE.AmbientLight(0xffffff);
     scene.add(ambientLight);
 
+    // Add a directional light to cast shadows
+    const dirLight = new THREE.DirectionalLight(0xffffff);
+    dirLight.position.set(0, 10, 5);
+    dirLight.castShadow = true;
+    scene.add(dirLight);
+
+    // Set up shadow properties for the light
+    dirLight.shadow.mapSize.width = 512; // default
+    dirLight.shadow.mapSize.height = 512; // default
+    dirLight.shadow.camera.near = 0.5; // default
+    dirLight.shadow.camera.far = 500; // default
+
+    const planeGeometry = new THREE.PlaneBufferGeometry(2000, 2000);
+    const planeMaterial = new THREE.MeshStandardMaterial({
+      color: 0x999999,
+      dithering: true,
+    });
+
+    const plane = new THREE.Mesh(planeGeometry, planeMaterial);
+    plane.position.z = -10;  // adjust this to move the plane forward/backward
+    plane.receiveShadow = true;  // this plane will receive shadows
+    scene.add(plane);
+
     // Load an MTL file
     const mtlLoader = new MTLLoader();
-    mtlLoader.load("../rounded_less.mtl", (materials) => {
+    mtlLoader.load("../rounded_less.mtl", (materials: { preload: () => void; }) => {
       materials.preload();
 
       const objLoader = new OBJLoader();
@@ -61,9 +87,11 @@ function My3DComponent(props: My3DComponentProps) {
 
     function animate() {
       requestAnimationFrame(animate);
+      time += 0.02;
+
       if (loadedObject !== null) {
-        loadedObject.rotation.x += 0.01;
-        loadedObject.rotation.y += 0.01;
+        // Adjust object's y position according to sine function
+        loadedObject.position.y = -1.5 + Math.sin(time) * 0.5;
       }
       renderer.render(scene, camera);
     }
