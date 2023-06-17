@@ -60,6 +60,23 @@ function My3DComponent(props: My3DComponentProps) {
     plane.receiveShadow = true;  // this plane will receive shadows
     scene.add(plane);
 
+    const mouse = new THREE.Vector2();
+    let targetRotationX = 0;
+    let targetRotationY = 0;
+
+    function onMouseMove(event: MouseEvent) {
+      // calculate mouse position in normalized device coordinates
+      mouse.x = (event.clientX / window.innerWidth) * 2 - 1;
+      mouse.y = -(event.clientY / window.innerHeight) * 2 + 1;
+
+      // update target rotations
+      targetRotationX = mouse.y * 0.1;  // vertical rotation
+      targetRotationY = mouse.x * 0.1;  // horizontal rotation
+    }
+
+    window.addEventListener('mousemove', onMouseMove, false);
+
+
     // Load an MTL file
     const mtlLoader = new MTLLoader();
     mtlLoader.load("../rounded_less.mtl", (materials: { preload: () => void; }) => {
@@ -93,6 +110,10 @@ function My3DComponent(props: My3DComponentProps) {
         // Adjust object's y position according to sine function
         loadedObject.position.y = -1.5 + Math.sin(time) * 0.5;
       }
+
+      camera.rotation.x += (targetRotationX - camera.rotation.x) * 0.05;
+      camera.rotation.y += (targetRotationY - camera.rotation.y) * 0.05;
+
       renderer.render(scene, camera);
     }
     animate();
@@ -127,6 +148,7 @@ function My3DComponent(props: My3DComponentProps) {
 
     onCleanup(() => {
       resizeObserver.disconnect();
+      window.removeEventListener('mousemove', onMouseMove, false);
       if (resizeTimeout !== undefined) {
         clearTimeout(resizeTimeout);
       }
