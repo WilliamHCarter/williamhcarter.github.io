@@ -111,8 +111,8 @@ function My3DComponent(props: My3DComponentProps) {
         loadedObject.position.y = -1.5 + Math.sin(time) * 0.5;
       }
 
-      camera.rotation.x += (targetRotationX - camera.rotation.x) * 0.05;
-      camera.rotation.y += (targetRotationY - camera.rotation.y) * 0.05;
+      camera.rotation.x += (targetRotationX - camera.rotation.x) * 0.03;
+      camera.rotation.y += (targetRotationY - camera.rotation.y) * 0.03;
 
       renderer.render(scene, camera);
     }
