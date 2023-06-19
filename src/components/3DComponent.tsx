@@ -25,8 +25,8 @@ function My3DComponent(props: My3DComponentProps) {
 
     const scene = new THREE.Scene();
 
-    const camera = new THREE.PerspectiveCamera(75, width() / height(), 0.1, 1000);
-    camera.position.z = 3;
+    const camera = new THREE.PerspectiveCamera(50, width() / height(), 0.1, 1000);
+    camera.position.z = 5;
 
     const renderer = new THREE.WebGLRenderer({ canvas: canvas, alpha: true, antialias: true });
     renderer.shadowMap.enabled = true;
@@ -109,6 +109,8 @@ function My3DComponent(props: My3DComponentProps) {
       if (loadedObject !== null) {
         // Adjust object's y position according to sine function
         loadedObject.position.y = -1.5 + Math.sin(time) * 0.5;
+        loadedObject.position.x = 2;
+        loadedObject.rotation.x = 0.3;
       }
 
       camera.rotation.x += (targetRotationX - camera.rotation.x) * 0.03;
