@@ -70,8 +70,8 @@ function My3DComponent(props: My3DComponentProps) {
       mouse.y = -(event.clientY / window.innerHeight) * 2 + 1;
 
       // update target rotations
-      targetRotationX = mouse.y * 0.1;  // vertical rotation
-      targetRotationY = mouse.x * 0.1;  // horizontal rotation
+      targetRotationX = mouse.y * -0.1;  // vertical rotation
+      targetRotationY = mouse.x * -0.1;  // horizontal rotation
     }
 
     window.addEventListener('mousemove', onMouseMove, false);
@@ -104,17 +104,17 @@ function My3DComponent(props: My3DComponentProps) {
 
     function animate() {
       requestAnimationFrame(animate);
-      time += 0.02;
+      time += 0.05;
 
       if (loadedObject !== null) {
         // Adjust object's y position according to sine function
-        loadedObject.position.y = -1.5 + Math.sin(time) * 0.5;
+        loadedObject.position.y = -1 + Math.sin(time) * 0.3;
         loadedObject.position.x = 2;
         loadedObject.rotation.x = 0.3;
       }
 
-      camera.rotation.x += (targetRotationX - camera.rotation.x) * 0.03;
-      camera.rotation.y += (targetRotationY - camera.rotation.y) * 0.03;
+      camera.rotation.x += (targetRotationX - camera.rotation.x) * 0.01;
+      camera.rotation.y += (targetRotationY - camera.rotation.y) * 0.02;
 
       renderer.render(scene, camera);
     }
