@@ -51,7 +51,7 @@ function My3DComponent(props: My3DComponentProps) {
 
     const planeGeometry = new THREE.PlaneBufferGeometry(2000, 2000);
     const planeMaterial = new THREE.MeshStandardMaterial({
-      color: 0x999999,
+      color: 0xbbbbbb,
       dithering: true,
     });
 
