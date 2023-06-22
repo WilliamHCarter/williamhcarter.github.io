@@ -87,7 +87,7 @@ function My3DComponent(props: My3DComponentProps) {
 
       objLoader.load(
         "../rounded_less.obj",
-        (object) => {
+        (object: any) => {
           loadedObject = object;
           scene.add(object);
         },
