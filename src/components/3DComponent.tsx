@@ -79,14 +79,14 @@ function My3DComponent(props: My3DComponentProps) {
 
     // Load an MTL file
     const mtlLoader = new MTLLoader();
-    mtlLoader.load("../rounded_less.mtl", (materials: { preload: () => void; }) => {
+    mtlLoader.load("../laptop.mtl", (materials: { preload: () => void; }) => {
       materials.preload();
 
       const objLoader = new OBJLoader();
       objLoader.setMaterials(materials);
 
       objLoader.load(
-        "../rounded_less.obj",
+        "../laptop.obj",
         (object: any) => {
           loadedObject = object;
           scene.add(object);
