@@ -49,17 +49,18 @@ function My3DComponent(props: My3DComponentProps) {
     dirLight.shadow.camera.near = 0.5; // default
     dirLight.shadow.camera.far = 500; // default
 
+    // Create a plane for the 3D object to sit on
     const planeGeometry = new THREE.PlaneBufferGeometry(2000, 2000);
     const planeMaterial = new THREE.MeshStandardMaterial({
       color: 0xbbbbbb,
       dithering: true,
     });
-
     const plane = new THREE.Mesh(planeGeometry, planeMaterial);
-    plane.position.z = -10;  // adjust this to move the plane forward/backward
-    plane.receiveShadow = true;  // this plane will receive shadows
+    plane.position.z = -10; // adjust this to move the plane forward/backward
+    plane.receiveShadow = true; // this plane will receive shadows
     scene.add(plane);
 
+    // Handle mouse movement to update target rotations
     const mouse = new THREE.Vector2();
     let targetRotationX = 0;
     let targetRotationY = 0;
@@ -70,16 +71,15 @@ function My3DComponent(props: My3DComponentProps) {
       mouse.y = -(event.clientY / window.innerHeight) * 2 + 1;
 
       // update target rotations
-      targetRotationX = mouse.y * -0.1;  // vertical rotation
-      targetRotationY = mouse.x * -0.1;  // horizontal rotation
+      targetRotationX = mouse.y * -0.1; // vertical rotation
+      targetRotationY = mouse.x * -0.1; // horizontal rotation
     }
 
-    window.addEventListener('mousemove', onMouseMove, false);
-
+    window.addEventListener("mousemove", onMouseMove, false);
 
     // Load an MTL file
     const mtlLoader = new MTLLoader();
-    mtlLoader.load("../laptop.mtl", (materials: { preload: () => void; }) => {
+    mtlLoader.load("../laptop.mtl", (materials: { preload: () => void }) => {
       materials.preload();
 
       const objLoader = new OBJLoader();
@@ -150,7 +150,7 @@ function My3DComponent(props: My3DComponentProps) {
 
     onCleanup(() => {
       resizeObserver.disconnect();
-      window.removeEventListener('mousemove', onMouseMove, false);
+      window.removeEventListener("mousemove", onMouseMove, false);
       if (resizeTimeout !== undefined) {
         clearTimeout(resizeTimeout);
       }
