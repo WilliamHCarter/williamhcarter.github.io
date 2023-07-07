@@ -2,6 +2,8 @@ import { createSignal, onMount, onCleanup } from "solid-js";
 import * as THREE from "three";
 import { MTLLoader } from "three/examples/jsm/loaders/MTLLoader.js";
 import { OBJLoader } from "three/examples/jsm/loaders/OBJLoader.js";
+import { GLTFLoader } from 'three/examples/jsm/loaders/GLTFLoader';
+import { DRACOLoader } from 'three/examples/jsm/loaders/DRACOLoader';
 
 interface My3DComponentProps {
   style?: string;
@@ -34,11 +36,11 @@ function My3DComponent(props: My3DComponentProps) {
     renderer.setSize(width(), height());
 
     // Add lighting
-    const ambientLight = new THREE.AmbientLight(0xffffff);
+    const ambientLight = new THREE.AmbientLight(0x404040, 0.5);
     scene.add(ambientLight);
 
     // Add a directional light to cast shadows
-    const dirLight = new THREE.DirectionalLight(0xffffff);
+    const dirLight = new THREE.DirectionalLight(0xffffff, 0.5);
     dirLight.position.set(0, 10, 5);
     dirLight.castShadow = true;
     scene.add(dirLight);
@@ -89,6 +91,12 @@ function My3DComponent(props: My3DComponentProps) {
         "../laptop.obj",
         (object: any) => {
           loadedObject = object;
+          loadedObject.traverse((node: any) => {
+            if (node.isMesh) {
+              // Ensure that the object casts shadows
+              node.castShadow = true;
+            }
+          });
           scene.add(object);
         },
         // onProgress callback
