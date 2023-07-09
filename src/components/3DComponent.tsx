@@ -36,12 +36,13 @@ function My3DComponent(props: My3DComponentProps) {
     renderer.setSize(width(), height());
 
     // Add lighting
-    const ambientLight = new THREE.AmbientLight(0x404040, 0.5);
+    const ambientLight = new THREE.AmbientLight(0x404040, 2);
     scene.add(ambientLight);
 
     // Add a directional light to cast shadows
     const dirLight = new THREE.DirectionalLight(0xffffff, 0.5);
-    dirLight.position.set(0, 10, 5);
+    dirLight.position.set(1, 1, 1); // Adjust these values to change the light's position
+    dirLight.target.position.set(0, 0, 0); // The point in the scene that the light is aimed at
     dirLight.castShadow = true;
     scene.add(dirLight);
 
