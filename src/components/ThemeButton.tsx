@@ -5,17 +5,15 @@ export default function ThemeButton() {
 
   const toggleTheme = () => {
     setTheme((currentTheme) => (currentTheme === "light" ? "dark" : "light"));
+  };
+
+  createEffect(() => {
     let currentTheme = theme();
     if (currentTheme != null) {
       document.documentElement.setAttribute("data-theme", currentTheme);
       localStorage.setItem("theme", currentTheme);
+      document.documentElement.classList.toggle("dark", currentTheme === "dark");
     }
-  };
-
-  createEffect(() => {
-    const isDark = theme() === "dark";
-    document.documentElement.classList.toggle("dark", isDark);
-    localStorage.setItem("theme", theme());
   });
 
   return (
