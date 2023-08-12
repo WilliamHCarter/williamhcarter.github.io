@@ -12,6 +12,7 @@ export default function ThemeButton() {
   onMount(() => {
     if (isClient) {
       const savedTheme = localStorage.getItem("theme");
+      console.log(savedTheme);
       const prefersDark = window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches;
       const userTheme = savedTheme ? savedTheme : (prefersDark ? "dark" : "light");
       setTheme(userTheme);
