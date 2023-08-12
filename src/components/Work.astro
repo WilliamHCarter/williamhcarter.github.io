@@ -2,47 +2,65 @@
 import WorkCard from "./WorkCard.astro";
 ---
 
-<div class="mt-10">
-  <h3
-    class="font-semibold text-2xl underline underline-offset-4 decoration-darkhl decoration-4 mt-3 mb-4"
-  >
-    Work
-  </h3>
+<div class="work-component" style="width: 100%;">
+  <div class="mt-10">
+    <h3
+      class="font-semibold text-2xl underline underline-offset-4 decoration-darkhl decoration-4 mt-3 mb-4"
+    >
+      Work
+    </h3>
+  </div>
+  <div class="grid grid-cols-[repeat(auto-fit,minmax(35ch,1fr))] gap-4 p-0">
+    <WorkCard
+      src="/movinghomes.webp"
+      srcmobile="/movinghomes.webp"
+      title="Moving Homes Together Website"
+      body="A simple, professional website built with Astro and TailwindCSS."
+      link="https://github.com/WilliamHCarter/movingtogetherwebsite"
+      techStack={[
+        {
+          alt: "Astro",
+          src: "https://img.shields.io/badge/-Astro-FF5D01?style=flat-square&logo=astro&logoColor=white",
+        },
+        {
+          alt: "TailwindCSS",
+          src: "https://img.shields.io/badge/-TailwindCSS-06B6D4?style=flat-square&logo=tailwindcss&logoColor=white",
+        },
+      ]}
+    />
+    <WorkCard
+      src="/BBOT.webp"
+      srcmobile="/BBOT-mobile.webp"
+      title="BrokerBot"
+      body="Autonomous trading alogrithms system utilizing backtesting via the Alpaca API."
+      link="https://github.com/JackMansfield2019/BrokerBot"
+      techStack={[
+        {
+          alt: "Python",
+          src: "https://img.shields.io/badge/-Python-3776AB?style=flat-square&logo=python&logoColor=white",
+        },
+      ]}
+    />
+    <WorkCard
+      src="/Crosswalk.webp"
+      srcmobile="/Crosswalk.webp"
+      title="Crosswalk"
+      body="Experimental physics game created with Unity for Ludum Dare 46."
+      link="https://github.com/WilliamHCarter/LD46"
+      techStack={[
+        {
+          alt: "C#",
+          src: "https://img.shields.io/badge/-CSharp-561eba?style=flat-square&logo=csharp&logoColor=white",
+        },
+        {
+          alt: "Unity",
+          src: "https://img.shields.io/badge/-Unity-000000?style=flat-square&logo=unity&logoColor=white",
+        },
+      ]}
+    />
+  </div>
 </div>
-<div class="grid grid-cols-[repeat(auto-fit,minmax(35ch,1fr))] gap-4 p-0">
-  <WorkCard
-  src="/movinghomes.webp"
-  srcmobile="/movinghomes.webp"
-  title="Moving Homes Together Website"
-  body="A simple, professional website built with Astro and TailwindCSS."
-  link="https://github.com/WilliamHCarter/movingtogetherwebsite"
-  techStack={[
-    {alt: "Astro", src: "https://img.shields.io/badge/-Astro-FF5D01?style=flat-square&logo=astro&logoColor=white"},
-    {alt: "TailwindCSS", src: "https://img.shields.io/badge/-TailwindCSS-06B6D4?style=flat-square&logo=tailwindcss&logoColor=white"},
-  ]}
-/>
-  <WorkCard
-    src="/BBOT.webp"
-    srcmobile="/BBOT-mobile.webp"
-    title="BrokerBot"
-    body="Autonomous trading alogrithms system utilizing backtesting via the Alpaca API."
-    link="https://github.com/JackMansfield2019/BrokerBot"
-    techStack={[
-      {alt: "Python", src: "https://img.shields.io/badge/-Python-3776AB?style=flat-square&logo=python&logoColor=white"}
-    ]}
-  />
-  <WorkCard
-    src="/Crosswalk.webp"
-    srcmobile="/Crosswalk.webp"
-    title="Crosswalk"
-    body="Experimental physics game created with Unity for Ludum Dare 46."
-    link="https://github.com/WilliamHCarter/LD46"
-    techStack={[
-      {alt: "C#", src: "https://img.shields.io/badge/-CSharp-561eba?style=flat-square&logo=csharp&logoColor=white"},
-      {alt: "Unity", src: "https://img.shields.io/badge/-Unity-000000?style=flat-square&logo=unity&logoColor=white"}
-    ]}
-  />
-</div>
+
 
 <!-- Parallax image effect for Cards 
 <script>
