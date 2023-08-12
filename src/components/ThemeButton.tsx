@@ -1,20 +1,36 @@
-import { createSignal, createEffect, onCleanup } from "solid-js";
-
+import { createSignal, createEffect, onMount } from "solid-js";
 export default function ThemeButton() {
   const [theme, setTheme] = createSignal(localStorage.getItem("theme") ?? "light");
 
   const toggleTheme = () => {
-    setTheme((currentTheme) => (currentTheme === "light" ? "dark" : "light"));
+    setTheme(currentTheme => currentTheme === "light" ? "dark" : "light");
   };
 
+  // Update theme on button toggle
   createEffect(() => {
-    let currentTheme = theme();
-    console.log("currentTheme:", currentTheme);
-    if (currentTheme != null) {
-      document.documentElement.setAttribute("data-theme", currentTheme);
-      localStorage.setItem("theme", currentTheme);
-      document.documentElement.classList.toggle("dark", currentTheme === "dark");
+    const currentTheme = theme();
+    document.documentElement.setAttribute("data-theme", currentTheme);
+    localStorage.setItem("theme", currentTheme);
+    document.documentElement.classList.toggle("dark", currentTheme === "dark");
+  });
+
+  // Event listener for system theme change
+  onMount(() => {
+    const systemPreference = window.matchMedia("(prefers-color-scheme: dark)");
+
+    // If theme isn't set in localStorage, use system preference
+    if (!localStorage.getItem("theme")) {
+      const prefersDark = systemPreference.matches ?? false;
+      setTheme(prefersDark ? "dark" : "light");
     }
+
+    // If system prefs change, adjust theme regardless of user choice
+    const handleMediaChange = (e: MediaQueryListEvent) => {
+      setTheme(e.matches ? "dark" : "light");
+    };
+
+    systemPreference.addEventListener("change", handleMediaChange);
+    return () => systemPreference.removeEventListener("change", handleMediaChange);
   });
 
   return (
