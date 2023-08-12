@@ -11,13 +11,27 @@ export interface Props {
 const { src, srcmobile, title, body, link, techStack } = Astro.props;
 ---
 
-<div class="link-card flex p-1 mb-8">
+<div class="link-card flex p-1 mb-8 skeleton">
   <a class="w-full no-underline leading-[1.4] flex flex-col" href={link}>
-    <div class="thumbnail-container relative w-full overflow-hidden rounded">
-      <img class="hidden pc:block img image object-cover aspect-[16/10]" src={src} alt="Astro" />
-      <img class="pc:hidden img image object-cover aspect-[16/10]" src={srcmobile} alt="Astro" />
+    <div class="thumbnail-container relative overflow-hidden rounded ">
+      <img
+        onload="this.parentNode.parentNode.parentNode.classList.remove('skeleton');"
+        class="hidden pc:block img image object-cover w-full aspect-[16/10]"
+        src={src}
+        alt="Astro"
+      />
+      <img
+        onload="this.parentNode.classList.remove('skeleton');"
+        class="pc:hidden img image object-cover w-full aspect-[16/10]"
+        src={srcmobile}
+        alt="Astro"
+      />
       <div class="tech-stack absolute bottom-0 right-0 flex align-center items-center flex-wrap">
-        {techStack.map(({ alt, src }) => <img alt={alt} src={src} class="ml-1 mb-2 mr-2 h-7 rounded-sm" />)}
+        {
+          techStack.map(({ alt, src }) => (
+            <img alt={alt} src={src} class="ml-1 mb-2 mr-2 h-7 rounded-sm" />
+          ))
+        }
       </div>
     </div>
     <h2 class="text-xl mt-2 mb-0">
@@ -30,6 +44,12 @@ const { src, srcmobile, title, body, link, techStack } = Astro.props;
 </div>
 
 <style>
+  .thumbnail-container.skeleton {
+    background-color: #e0e0e0; 
+    position: relative;
+    width: 100%;
+    padding-bottom: 62.5%; 
+  }
   .thumbnail-container::before {
     content: "";
     position: absolute;
@@ -39,5 +59,12 @@ const { src, srcmobile, title, body, link, techStack } = Astro.props;
     height: 20%;
     background: linear-gradient(to top, rgba(0, 0, 0, 0.55), transparent);
   }
-</style>
 
+  .thumbnail-container.skeleton img {
+    display: none;
+  }
+
+  .thumbnail-container.skeleton {
+    background-color: #e0e0e0; /* This is your skeleton color. */
+  }
+</style>
