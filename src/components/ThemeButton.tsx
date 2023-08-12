@@ -1,27 +1,18 @@
-import { createSignal, createEffect } from "solid-js";
+import { createSignal, createEffect, onCleanup } from "solid-js";
 
 export default function ThemeButton() {
-  const isClient = typeof window !== 'undefined';
-
-  // Set default theme based on user preference or localStorage
-  const [theme, setTheme] = createSignal(
-    isClient 
-      ? localStorage.getItem("theme") 
-        || (window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches ? "dark" : "light")
-      : "light"  // Default to light on the server
-  );
+  const [theme, setTheme] = createSignal(localStorage.getItem("theme") ?? "light");
 
   const toggleTheme = () => {
     setTheme((currentTheme) => (currentTheme === "light" ? "dark" : "light"));
   };
 
-  // This effect takes care of syncing theme changes to the DOM and localStorage
   createEffect(() => {
-    if (isClient) {
-      const currentTheme = theme();
+    let currentTheme = theme();
+    if (currentTheme != null) {
       document.documentElement.setAttribute("data-theme", currentTheme);
-      document.documentElement.classList.toggle("dark", currentTheme === "dark");
       localStorage.setItem("theme", currentTheme);
+      document.documentElement.classList.toggle("dark", currentTheme === "dark");
     }
   });
 
