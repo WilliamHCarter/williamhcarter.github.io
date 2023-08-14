@@ -24,6 +24,29 @@ import "@fontsource/inter/600.css";
     <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
     <meta name="generator" content={Astro.generator} />
     <title>{title}</title>
+    <script is:inline> 
+          const theme = (() => {
+        if (typeof localStorage !== "undefined" && localStorage.getItem("theme")) {
+          return localStorage.getItem("theme");
+        }
+        if (window.matchMedia("(prefers-color-scheme: dark)").matches) {
+          return "dark";
+        }
+        return "light";
+      })();
+
+      if (theme === "light") {
+        document.documentElement.classList.remove("dark");
+      } else {
+        document.documentElement.classList.add("dark");
+      }
+      window.localStorage.setItem("theme", theme);
+      let currentTheme = localStorage.getItem("theme");
+      if (currentTheme != null) {
+        document.documentElement.setAttribute("data-theme", currentTheme);
+        localStorage.setItem("theme", currentTheme);
+      }
+    </script>
   </head>
   <div class="fixed w-full mx-auto z-10 backdrop-blur-sm bg-[#ffffff60] dark:bg-dnav">
     <Navbar />
