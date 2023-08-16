@@ -13,7 +13,7 @@ const { src, srcmobile, title, body, link, techStack } = Astro.props;
 
 <div class="link-card flex p-1 mb-8 skeleton">
   <a class="w-full no-underline leading-[1.4] flex flex-col" href={link}>
-    <div class="thumbnail-container relative overflow-hidden rounded ">
+    <div class="thumbnail-container relative overflow-hidden rounded">
       <img
         onload="this.parentNode.parentNode.parentNode.classList.remove('skeleton');"
         class="hidden pc:block img image object-cover w-full aspect-[16/10]"
@@ -26,10 +26,14 @@ const { src, srcmobile, title, body, link, techStack } = Astro.props;
         src={srcmobile}
         alt="Astro"
       />
-      <div class="tech-stack absolute bottom-0 right-0 flex align-center items-center flex-wrap">
+      <div
+        class="tech-stack absolute bottom-0 right-0 scale-[1.4] -translate-x-[20%] flex align-center items-center flex-wrap"
+      >
         {
           techStack.map(({ alt, src }) => (
-            <img alt={alt} src={src} class="ml-1 mb-2 mr-2 h-7 rounded-sm" />
+            <div class="flex justify-center items-center ml-0.5 mb-2.5 mr-1.5  ">
+              <embed src={src} class="embed rounded-sm h-5" />
+            </div>
           ))
         }
       </div>
@@ -45,10 +49,10 @@ const { src, srcmobile, title, body, link, techStack } = Astro.props;
 
 <style>
   .thumbnail-container.skeleton {
-    background-color: #e0e0e0; 
+    background-color: #e0e0e0;
     position: relative;
     width: 100%;
-    padding-bottom: 62.5%; 
+    padding-bottom: 62.5%;
   }
   .thumbnail-container::before {
     content: "";
