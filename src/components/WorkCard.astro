@@ -13,21 +13,19 @@ const { src, srcmobile, title, body, link, techStack } = Astro.props;
 
 <div class="link-card flex p-1 mb-8 skeleton">
   <a class="w-full no-underline leading-[1.4] flex flex-col" href={link}>
-    <div class="thumbnail-container relative overflow-hidden rounded">
+    <div class="thumbnail-container relative overflow-hidden rounded bg-[#dddddd]">
       <img
-        onload="this.parentNode.parentNode.parentNode.classList.remove('skeleton');"
         class="hidden pc:block img image object-cover w-full aspect-[16/10]"
         src={src}
         alt="Astro"
       />
       <img
-        onload="this.parentNode.classList.remove('skeleton');"
         class="pc:hidden img image object-cover w-full aspect-[16/10]"
         src={srcmobile}
         alt="Astro"
       />
       <div
-        class="tech-stack absolute bottom-0 right-0 scale-[1.4] -translate-x-[20%] flex align-center items-center flex-wrap"
+        class="tech-stack absolute bottom-0 right-0 scale-[1.4] -translate-x-[20%] flex align-center"
       >
         {
           techStack.map(({ alt, src }) => (
@@ -48,12 +46,6 @@ const { src, srcmobile, title, body, link, techStack } = Astro.props;
 </div>
 
 <style>
-  .thumbnail-container.skeleton {
-    background-color: #e0e0e0;
-    position: relative;
-    width: 100%;
-    padding-bottom: 62.5%;
-  }
   .thumbnail-container::before {
     content: "";
     position: absolute;
@@ -62,13 +54,5 @@ const { src, srcmobile, title, body, link, techStack } = Astro.props;
     width: 100%;
     height: 20%;
     background: linear-gradient(to top, rgba(0, 0, 0, 0.55), transparent);
-  }
-
-  .thumbnail-container.skeleton img {
-    display: none;
-  }
-
-  .thumbnail-container.skeleton {
-    background-color: #e0e0e0; /* This is your skeleton color. */
   }
 </style>
