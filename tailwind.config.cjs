@@ -7,7 +7,23 @@ module.exports = {
       fontFamily: {
         sans: ["Inter", ...defaultTheme.fontFamily.sans],
       },
-
+      keyframes: {
+        intro: {
+          '0%': {
+            transform: 'translateY(10px)',
+            opacity: '0',
+          },
+          '100%': {
+            transform: 'translateY(0)',
+            opacity: '1',
+          },
+        },
+      },
+      animation: {
+        'intro-100': 'intro 0.8s 80ms backwards',
+        'intro-200': 'intro 0.8s 200ms backwards',
+        'intro-300': 'intro 0.8s 300ms backwards',
+      },
     },
     colors: {
       light: "#5F92CC",
