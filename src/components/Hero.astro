@@ -7,7 +7,7 @@
   <div class="orb orb2"></div>
 
   <!-- Content -->
-  <div class="flex flex-col items-center justify-center h-full w-full animate-intro-100 mt-5 delay-def">
+  <div class="z-3 flex flex-col items-center justify-center h-full w-full animate-intro-100 mt-5 delay-def">
     <h2 class="text-5xl font-semibold delay-def">Will Carter</h2>
     <p class="text-xl mt-1" >Developer | Designer | Creative</p>
   </div>
@@ -34,7 +34,7 @@
 
 /* Floating Orbs */
 .orb {
-  position: sticky;
+  position: absolute;
   width: 400px; /* Adjust this for orb size */
   height: 400px;
   border-radius: 50%;
@@ -62,16 +62,6 @@
   to {
     transform: translateY(30px); /* Adjust this to change the drift distance */
   }
-}
-
-/* Content Style */
-.content {
-  position: relative;
-  z-index: 3;
-  text-align: center;
-  top: 50%;
-  left: 50%;
-  transform: translate(-50%, -50%);
 }
 
 </style>
