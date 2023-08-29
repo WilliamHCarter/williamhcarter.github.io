@@ -9,43 +9,41 @@
   <!-- Content -->
   <div class="z-[3] flex flex-col items-center justify-center h-full w-full animate-intro-100 mt-5 delay-def">
     <h2 class="text-5xl font-semibold delay-def">Will Carter</h2>
-    <p class="text-xl mt-1" >Developer | Designer | Creative</p>
+    <p class="text-xl mt-1">Developer | Designer | Creative</p>
   </div>
 </div>
 
 <style>
-
   /* Basic styles for the hero section */
-.hero-section {
-  position: relative;
-  height: 500px; /* Adjust this to your desired height */
-  overflow: hidden;
-}
+  .hero-section {
+    position: relative;
+    height: 500px;
+    overflow: hidden;
+  }
 
-/* Blurred Background */
-.bg-blur {
-  position: fixed;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100%;
-  z-index: 2;
-}
+  /* Blurred Background */
+  .bg-blur {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    z-index: 2;
+  }
 
-/* Floating Orbs */
-.orb {
-  position: absolute;
-  width: 400px; /* Adjust this for orb size */
-  height: 400px;
-  border-radius: 50%;
-  z-index: 1;
-}
+  /* Floating Orbs */
+  .orb {
+    position: absolute;
+    width: 400px;
+    height: 400px;
+    border-radius: 50%;
+    z-index: 1;
+  }
 
-.orb1 {
+  .orb1 {
     top: 10%;
     left: -10%;
     background-color: rgb(82, 70, 255);
-    animation: drift1 42s infinite cubic-bezier(0.42, 0, 0.58, 1);
   }
 
   .orb2 {
@@ -55,28 +53,50 @@
     animation: drift2 12s infinite alternate;
   }
 
-  @keyframes drift1 {
-    0% {
-        transform: translate(0, 0); /* Starting position */
-    }
-    33% {
-        transform: translate(200px, 150px); /* Middle position */
-    }
-    66% {
-        transform: translate(400px, 0px); /* End position (back to start) */
-    }
-    100% {
-        transform: translate(0, 0); /* Starting position */
-    }
-  }
-
   @keyframes drift2 {
     from {
       transform: translate(0, 0);
     }
     to {
-      transform: translate(-150px, 200px); /* Adjust as needed */
+      transform: translate(-150px, 200px);
     }
   }
-
 </style>
+
+<script>
+  const orb1 = document.querySelector(".orb1") as HTMLElement;
+
+  let x = 0;
+  let y = 0;
+  let t = 0;
+  let multiplier1 = 1;
+  let multiplier2 = 1.5;
+
+  function moveOrb() {
+    // Randomly change multipliers occasionally
+    if (Math.random() < 0.01) {
+      // 1% chance to change multipliers
+      multiplier1 = 1 + Math.random();
+      multiplier2 = 1 + Math.random();
+    }
+
+    // Ensure orb remains within boundaries
+    const maxX = window.innerWidth - orb1.clientWidth;
+    if (x < 0) x = 0;
+    if (x > maxX) x = maxX;
+    const maxY = window.innerHeight - orb1.clientHeight;
+    if (y < 0) y = 0;
+    if (y > maxY) y = maxY;
+    orb1.style.transform = `translate(${x}px, ${y}px)`;
+
+    x += Math.sin(t * multiplier1) * 5;
+    y += Math.cos(t * multiplier2) * 5;
+
+    orb1.style.transform = `translate(${x}px, ${y}px)`;
+
+    t += 0.02;
+    requestAnimationFrame(moveOrb);
+  }
+
+  requestAnimationFrame(moveOrb);
+</script>
