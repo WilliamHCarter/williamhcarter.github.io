@@ -1,6 +1,86 @@
-<div class="animate-intro-100 mt-5 delay-def">
-  <h2 class="text-4xl font-semibold delay-def">Will Carter</h2>
-  <p>Developer | Designer | Creative</p>
+<div class="relative pc:h-[70svh] h-[65svh] overflow-hidden flex w-full">
+  <!-- Blurred Background -->
+ <div class="bg-blur fixed top-0 left-0 w-full h-full z-[2] backdrop-blur-xl bg-[ffffff60]"></div>
+
+  <!-- Floating Orbs -->
+  <canvas id="orbs" class="z-[0] absolute top-0 left-0 w-full h-full"></canvas>
+
+  <!-- Content -->
+  <div class="z-[3] flex flex-col items-center justify-center h-full w-full animate-intro-100 mt-5 delay-def">
+    <h2 class="text-5xl font-semibold delay-def">Will Carter</h2>
+    <p class="text-xl mt-1">Developer | Designer | Creative</p>
+  </div>
 </div>
-<div>
-</div>
+
+<script>
+const canvas = document.getElementById('orbs') as HTMLCanvasElement;
+const ctx = canvas.getContext('2d') as CanvasRenderingContext2D;
+canvas.width = canvas.offsetWidth;
+canvas.height = canvas.offsetHeight;
+
+const orbs = [
+    { x: canvas.width * 0.2, y: canvas.height * 0.2, r: (0.0786*canvas.width), dx: 1, dy: 1, color: { r: 82, g: 70, b: 255 } }, //Darker blue
+    { x: canvas.width * 0.7, y: canvas.height * 0.3, r: (0.0786*canvas.width), dx: -1, dy: -1, color: { r: 62, g: 226, b: 196 } }, //Pastel Green
+    { x: canvas.width * 0.4, y: canvas.height * 0.6, r: (0.0786*canvas.width), dx: -1, dy: 1, color: { r: 198, g: 125, b: 255 } }, // Pastel purple
+    { x: canvas.width * 0.8, y: canvas.height * 0.8, r: (0.0786*canvas.width), dx: -1, dy: -1, color: { r: 170, g: 226, b: 255 } }  // Pastel blue
+];
+
+const THRESHOLD = 0.5;
+
+function drawOrbs() {
+    ctx.clearRect(0, 0, canvas.width, canvas.height);
+    const imageData = ctx.createImageData(canvas.width, canvas.height);
+    //Move Orbs
+    for (const orb of orbs) {
+        orb.x += orb.dx;
+        orb.y += orb.dy;
+        orb.dx = (orb.x - orb.r <= 0 || orb.x + orb.r >= canvas.width) ? -orb.dx : orb.dx;
+        orb.dy = (orb.y - orb.r <= 0 || orb.y + orb.r >= canvas.height) ? -orb.dy : orb.dy;
+    }
+
+    //Draw Orbs
+    for (let y = 0; y < canvas.height; y++) {
+    for (let x = 0; x < canvas.width; x++) {
+        let totalShapeInfluence = 0;
+        let totalColorInfluence = 0;
+        let color = { r: 0, g: 0, b: 0 };
+
+        for (const orb of orbs) {
+            const dx = x - orb.x;
+            const dy = y - orb.y;
+            var distance = Math.sqrt(dx * dx + dy * dy);
+
+            // For Color
+            var colorInfluence = distance ? orb.r / (distance*distance/150) : 1;
+            totalColorInfluence += colorInfluence;
+            color.r += orb.color.r * colorInfluence;
+            color.g += orb.color.g * colorInfluence;
+            color.b += orb.color.b * colorInfluence;
+
+            // For Shape
+            var shapeInfluence = colorInfluence;
+            if (shapeInfluence < THRESHOLD) {
+              shapeInfluence *= 0.8 * (2/(orbs.length*0.7));
+            }
+            totalShapeInfluence += shapeInfluence;
+
+        }
+
+        const idx = (x + y * canvas.width) * 4;
+        if (totalShapeInfluence > THRESHOLD) {
+            imageData.data[idx] = color.r / totalColorInfluence;
+            imageData.data[idx + 1] = color.g / totalColorInfluence;
+            imageData.data[idx + 2] = color.b / totalColorInfluence;
+            imageData.data[idx + 3] = 255;
+        } else {
+            imageData.data[idx + 3] = 0;
+        }
+    }
+}
+
+    ctx.putImageData(imageData, 0, 0);
+    requestAnimationFrame(drawOrbs);
+}
+
+drawOrbs();
+</script>
