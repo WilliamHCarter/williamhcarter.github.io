@@ -1,6 +1,6 @@
 <div class="hero-section flex mt-20 w-full">
-  <!-- Blurred Background Image   -->
-  <div class="bg-blur backdrop-blur-xl bg-[ffffff60]"></div>
+  <!-- Blurred Background Image    <div class="bg-blur backdrop-blur-xl bg-[ffffff60]"></div>
+ -->
 
   <!-- Floating Orbs -->
   <canvas id="orbs" class="z-[0] absolute top-0 left-0 w-full h-full"></canvas>
@@ -41,9 +41,9 @@ canvas.height = canvas.offsetHeight;
 const balls = [
     { x: canvas.width * 0.1, y: canvas.height * 0.1, r: 60, dx: 1, dy: 1, color: { r: 82, g: 70, b: 255 } },
     { x: canvas.width * 0.7, y: canvas.height * 0.3, r: 60, dx: -1, dy: -1, color: { r: 62, g: 226, b: 196 } },
-    //{ x: canvas.width * 0.4, y: canvas.height * 0.6, r: 60, dx: -1, dy: 1, color: { r: 210, g: 155, b: 255 } }, // Pastel purple
+    { x: canvas.width * 0.4, y: canvas.height * 0.6, r: 60, dx: -1, dy: 1, color: { r: 210, g: 155, b: 255 } }, // Pastel purple
     //{ x: canvas.width * 0.8, y: canvas.height * 0.5, r: 60, dx: 1, dy: -1, color: { r: 255, g: 170, b: 200 } }, // Pastel pink
-    //{ x: canvas.width * 0.2, y: canvas.height * 0.8, r: 60, dx: -1, dy: -1, color: { r: 170, g: 226, b: 255 } }  // Pastel blue
+    { x: canvas.width * 0.2, y: canvas.height * 0.8, r: 60, dx: -1, dy: -1, color: { r: 170, g: 226, b: 255 } }  // Pastel blue
 ];
 
 const THRESHOLD = 0.5;
@@ -69,7 +69,7 @@ function drawMetaballs() {
                 const dx = x - ball.x;
                 const dy = y - ball.y;
                 const distance = Math.sqrt(dx * dx + dy * dy);
-                const influence = distance ? ball.r / ( distance) : 1;
+                const influence = distance ? ball.r / ( distance-200) : 1;
 
                 totalInfluence += influence;
 
