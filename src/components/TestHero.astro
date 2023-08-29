@@ -1,7 +1,6 @@
-<div class="hero-section flex mt-20 w-full">
-  <!-- Blurred Background Image    <div class="bg-blur backdrop-blur-xl bg-[ffffff60]"></div>
- 
- -->
+<div class="hero-section flex w-full">
+  <!-- Blurred Background   -->
+ <div class="bg-blur backdrop-blur-xl bg-[ffffff60]"></div>
   <!-- Floating Orbs -->
   <canvas id="orbs" class="z-[0] absolute top-0 left-0 w-full h-full"></canvas>
 
@@ -17,7 +16,7 @@
   /* Basic styles for the hero section */
   .hero-section {
     position: relative;
-    height: 500px;
+    height: 600px;
     overflow: hidden;
   }
 
@@ -39,11 +38,10 @@ canvas.width = canvas.offsetWidth;
 canvas.height = canvas.offsetHeight;
 
 const orbs = [
-    { x: canvas.width * 0.1, y: canvas.height * 0.1, r: 80, dx: 1, dy: 1, color: { r: 82, g: 70, b: 255 } },
-    { x: canvas.width * 0.7, y: canvas.height * 0.3, r: 80, dx: -1, dy: -1, color: { r: 62, g: 226, b: 196 } },
-    //{ x: canvas.width * 0.4, y: canvas.height * 0.6, r: 80, dx: -1, dy: 1, color: { r: 210, g: 155, b: 255 } }, // Pastel purple
-    //{ x: canvas.width * 0.8, y: canvas.height * 0.5, r: 60, dx: 1, dy: -1, color: { r: 255, g: 170, b: 200 } }, // Pastel pink
-    //{ x: canvas.width * 0.8, y: canvas.height * 0.8, r: 80, dx: -1, dy: -1, color: { r: 170, g: 226, b: 255 } }  // Pastel blue
+    { x: canvas.width * 0.2, y: canvas.height * 0.2, r: 120, dx: 1, dy: 1, color: { r: 82, g: 70, b: 255 } }, //Darker blue
+    { x: canvas.width * 0.7, y: canvas.height * 0.3, r: 120, dx: -1, dy: -1, color: { r: 62, g: 226, b: 196 } }, //Pastel Green
+    { x: canvas.width * 0.4, y: canvas.height * 0.6, r: 120, dx: -1, dy: 1, color: { r: 198, g: 125, b: 255 } }, // Pastel purple
+    { x: canvas.width * 0.8, y: canvas.height * 0.8, r: 120, dx: -1, dy: -1, color: { r: 170, g: 226, b: 255 } }  // Pastel blue
 ];
 
 const THRESHOLD = 0.5;
@@ -69,19 +67,19 @@ function drawOrbs() {
         for (const orb of orbs) {
             const dx = x - orb.x;
             const dy = y - orb.y;
-            const distance = Math.sqrt(dx * dx + dy * dy);
-            
+            var distance = Math.sqrt(dx * dx + dy * dy);
+
             // For Color
-            var colorInfluence = distance ? orb.r / (distance) : 1;
+            var colorInfluence = distance ? orb.r / (distance*distance/150) : 1;
             totalColorInfluence += colorInfluence;
             color.r += orb.color.r * colorInfluence;
             color.g += orb.color.g * colorInfluence;
             color.b += orb.color.b * colorInfluence;
 
             // For Shape
-            var shapeInfluence = colorInfluence;  // Currently the same, but you can adjust this separately.
+            var shapeInfluence = colorInfluence;
             if (shapeInfluence < THRESHOLD) {
-              shapeInfluence *= 0.8 * (2/orbs.length*1.1);
+              shapeInfluence *= 0.8 * (2/(orbs.length*0.7));
             }
             totalShapeInfluence += shapeInfluence;
 
