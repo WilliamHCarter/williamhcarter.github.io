@@ -42,26 +42,41 @@
 }
 
 .orb1 {
-  top: 10%;
-  left: -10%;
-  background-color: rgb(82, 70, 255); /* Semi-transparent white. Adjust as needed */
-  animation: drift 10s infinite alternate;
-}
-
-.orb2 {
-  top: 30%;
-  left: 70%;
-  background-color: rgb(62, 226, 196); /* Semi-transparent white. Adjust as needed */
-  animation: drift 12s infinite alternate;
-}
-
-@keyframes drift {
-  from {
-    transform: translateY(0);
+    top: 10%;
+    left: -10%;
+    background-color: rgb(82, 70, 255);
+    animation: drift1 42s infinite cubic-bezier(0.42, 0, 0.58, 1);
   }
-  to {
-    transform: translateY(30px); /* Adjust this to change the drift distance */
+
+  .orb2 {
+    top: 30%;
+    left: 70%;
+    background-color: rgb(62, 226, 196);
+    animation: drift2 12s infinite alternate;
   }
-}
+
+  @keyframes drift1 {
+    0% {
+        transform: translate(0, 0); /* Starting position */
+    }
+    33% {
+        transform: translate(200px, 150px); /* Middle position */
+    }
+    66% {
+        transform: translate(400px, 0px); /* End position (back to start) */
+    }
+    100% {
+        transform: translate(0, 0); /* Starting position */
+    }
+  }
+
+  @keyframes drift2 {
+    from {
+      transform: translate(0, 0);
+    }
+    to {
+      transform: translate(-150px, 200px); /* Adjust as needed */
+    }
+  }
 
 </style>
