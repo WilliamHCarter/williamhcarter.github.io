@@ -36,6 +36,7 @@ module.exports = {
     },
     screens: {
       pc: "700px",
+      grid: "750px",
       contain: "1024px",
     },
   },
