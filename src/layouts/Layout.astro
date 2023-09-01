@@ -45,10 +45,11 @@ import "@fontsource/inter/600.css";
       }
     </script>
   </head>
-  <div class="fixed w-full mx-auto z-10 backdrop-blur-sm bg-[#ffffff60] dark:bg-dnav">
-    <Navbar />
-  </div>
-  <body>
+
+  <body class="bg-offw dark:bg-dark">
+    <div class="fixed w-full mx-auto z-10 backdrop-blur-sm bg-[#ffffff60] dark:bg-dnav">
+      <Navbar />
+    </div>
     <slot />
   </body>
 </html>
