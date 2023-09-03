@@ -37,7 +37,7 @@ export default function Example() {
       </button>
 
       <div
-        class={`absolute right-0 z-10 mt-12 bg-offw dark:bg-[#2D3748] w-56 origin-top-right rounded-md  shadow-lg  border border-solid border-[#ffffff29] focus:outline-none transition-all duration-200 ease-in-out transform ${
+        class={`absolute right-0 z-10 mt-12 bg-offw dark:bg-[#2D3748] w-56 origin-top-right rounded-md shadow-lg border border-solid border-[#ffffff29] focus:outline-none transition-all duration-200 ease-in-out transform ${
           isOpen() ? "opacity-100 scale-100" : "opacity-0 hidden scale-95"
         }`}
       >
