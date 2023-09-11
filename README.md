@@ -29,8 +29,8 @@ To get started with this project, follow these steps:
 1. Clone the repository:
 
 ```bash
-git clone https://github.com/username/portfolio.git
-cd portfolio
+git clone https://github.com/WilliamHCarter/williamhcarter.github.io.git
+cd williamhcarter.github.io
 ```
 
 2. Install dependencies:
