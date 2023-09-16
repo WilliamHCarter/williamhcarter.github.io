@@ -16,11 +16,20 @@ module.exports = {
             opacity: '1',
           },
         },
+        fade: {
+          '0%': {
+            opacity: '0',
+          },
+          '100%': {
+            opacity: '1',
+          },
+        },
       },
       animation: {
         'intro-100': 'intro 0.8s 80ms backwards',
         'intro-200': 'intro 0.8s 200ms backwards',
         'intro-300': 'intro 0.8s 300ms backwards',
+        'quick-fade': 'fade 0.1s 0ms backwards',
       },
     },
     colors: {

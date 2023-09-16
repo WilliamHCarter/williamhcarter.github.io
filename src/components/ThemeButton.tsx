@@ -35,7 +35,7 @@ export default function ThemeButton() {
 
   return (
     <button
-      class="flex items-center justify-evenly rounded-md w-10 h-10 shadow-sm border border-solid border-[#ffffff29] hover:bg-gray-50 bg-[#805ad5] dark:bg-[#f6ad54]"
+      class="flex items-center justify-evenly rounded-md w-10 h-10 shadow-sm border border-solid border-[#ffffff29] hover:bg-gray-50 animate-quick-fade"
       aria-label="Toggle Dark Mode"
       onClick={toggleTheme}
     >
