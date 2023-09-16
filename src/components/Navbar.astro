@@ -40,11 +40,11 @@ import ThemeButton from "./ThemeButton.jsx";
         Github
       </a>
     </div>
-    <astro-fragment><ThemeButton client:load /></astro-fragment>
+    <div class="w-10 h-10 bg-[#805ad5] dark:bg-[#f6ad54] rounded-md"><ThemeButton client:only="solid-js" /></div>
   </nav>
   <astro-fragment class="pc:hidden flex gap-4">
     <MobileMenu client:load />
-    <ThemeButton client:load />
+    <div class="w-10 h-10 bg-[#805ad5] dark:bg-[#f6ad54] rounded-md"><ThemeButton client:only="solid-js" /></div>
   </astro-fragment>
 </div>
 <style>
