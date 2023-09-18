@@ -18,8 +18,8 @@
 <script>
   const canvas = document.getElementById("orbs") as HTMLCanvasElement;
   const ctx = canvas.getContext("2d") as CanvasRenderingContext2D;
-  canvas.width = canvas.offsetWidth / 2;
-  canvas.height = canvas.offsetHeight / 2;
+  canvas.width = 720;
+  canvas.height = 360;
 
   const orbs = [
     { x: canvas.width * 0.2, y: canvas.height * 0.2, r: (0.036*canvas.width), dx: 0.6, dy: 0.6, color: { r: 82, g: 70, b: 255 } }, //Darker blue
