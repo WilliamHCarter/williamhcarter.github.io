@@ -4,47 +4,35 @@ import Logo from "../components/Logo.astro";
 import ThemeButton from "./ThemeButton.jsx";
 ---
 
-<div
-  class="flex justify-between items-center max-w-7xl mx-auto px-2 py-4"
->
+<div class="flex justify-between items-center max-w-7xl mx-auto px-2 py-4">
   <Logo />
   <nav class="navlinks hidden pc:flex justify-end items-center gap-8 mr-[2vw]">
-    <a
-      class="text-dark dark:text-offw font-[500] text-center hover:underline underline-offset-4 hover:text-teal no-underline m-0"
-      href="/work"
-    >
-      Work
-    </a>
-    <a
-      class="text-dark dark:text-offw font-[500] text-center hover:underline underline-offset-4 hover:text-teal no-underline m-0"
-      href="/WillCarterResume.pdf"
-    >
+    <a class="text-dark dark:text-offw font-[500] hover:text-teal m-0" href="/work"> Work</a>
+    <a class="text-dark dark:text-offw font-[500] hover:text-teal m-0" href="/WillCarterResume.pdf">
       Resume
     </a>
-    <a
-      class="text-dark dark:text-offw font-[500] text-center hover:underline underline-offset-4 hover:text-teal no-underline m-0"
-      href="/contact"
-    >
-      Contact
-    </a>
+    <a class="text-dark dark:text-offw font-[500] hover:text-teal m-0" href="/contact"> Contact</a>
     <div
-      class="flex items-center px-4 py-2 bg-g hover:bg-ghl dark:hover:bg-[#ffffff25] dark:bg-[#ffffff14] rounded-md transition-bg-color hover:duration-150 ease relative"
+      class="px-4 py-2 bg-g hover:bg-ghl dark:hover:bg-[#ffffff25] dark:bg-[#ffffff14] rounded-md"
     >
-      <img
-        class="inline-block w-4 mr-2 filter grayscale contrast-[8500] dark:invert"
-        src="/github.svg"
-        alt="gh-icon"
-      />
-      <a class="absolute inset-0 z-neg" href="https://github.com/WilliamHCarter" aria-label="Github"></a>
-      <a class="relative text-dark dark:text-offw text-base font-[500]"href="https://github.com/WilliamHCarter">
-        Github
+      <a class="flex items-center" href="https://github.com/WilliamHCarter" aria-label="Github">
+        <img
+          class="inline-block w-4 mr-2 filter grayscale contrast-[8500] dark:invert"
+          src="/github.svg"
+          alt="gh-icon"
+        />
+        <p class="text-dark dark:text-offw text-base font-[500]">Github</p>
       </a>
     </div>
-    <div class="w-10 h-10 bg-[#805ad5] dark:bg-[#f6ad54] rounded-md"><ThemeButton client:only="solid-js" /></div>
+    <div class="w-10 h-10 bg-[#805ad5] dark:bg-[#f6ad54] rounded-md">
+      <ThemeButton client:only="solid-js" />
+    </div>
   </nav>
   <astro-fragment class="pc:hidden flex gap-4">
     <MobileMenu client:load />
-    <div class="w-10 h-10 bg-[#805ad5] dark:bg-[#f6ad54] rounded-md"><ThemeButton client:only="solid-js" /></div>
+    <div class="w-10 h-10 bg-[#805ad5] dark:bg-[#f6ad54] rounded-md">
+      <ThemeButton client:only="solid-js" />
+    </div>
   </astro-fragment>
 </div>
 <style>
@@ -54,6 +42,7 @@ import ThemeButton from "./ThemeButton.jsx";
     margin: 0;
     text-align: center;
   }
+
   @media only screen and (max-width: 700px) {
     h3 {
       font-size: 1.5rem;
