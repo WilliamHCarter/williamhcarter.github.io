@@ -25,9 +25,7 @@ const { src, srcmobile, title, body, link, techStack } = Astro.props;
         src={srcmobile}
         alt="Astro"
       />
-      <div
-        class="tech-stack absolute bottom-0 right-0 scale-[1.4] -translate-x-[20%] flex align-center"
-      >
+      <div class="absolute bottom-0 right-0 scale-[1.4] -translate-x-[20%] flex align-center">
         {
           techStack.map(({ alt, src }) => (
             <div class="flex justify-center items-center ml-0.5 mb-2.5 mr-1.5  ">

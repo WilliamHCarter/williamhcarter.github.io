@@ -1,7 +1,6 @@
 <div class="relative pc:h-[70svh] h-[65svh] overflow-hidden flex">
   <!-- Blurred Background -->
-  <div
-    class="fixed w-full h-full z-[2] backdrop-blur-md pc:backdrop-blur-xl bg-[ffffff60]"
+  <div class="fixed w-full h-full z-[2] backdrop-blur-md pc:backdrop-blur-xl bg-[ffffff60]"
   >
   </div>
 
@@ -21,7 +20,7 @@
 <script>
   const canvas = document.getElementById("orbs") as HTMLCanvasElement;
   const ctx = canvas.getContext("2d") as CanvasRenderingContext2D;
-  const MAX_DIM = 500; // Maximum size for either width or height
+  const MAX_DIM = 400; // Maximum size for either width or height
   function sizeCanvas(){
   const larger = Math.max(canvas.offsetWidth, canvas.offsetHeight);
   const scale = larger > MAX_DIM ? larger / MAX_DIM : 1;
@@ -31,8 +30,8 @@
   sizeCanvas();
   addEventListener("resize", sizeCanvas);
 
-  const orb_speed = 0.5;
-  const orb_size = 0.024*Math.max(canvas.width, canvas.height);
+  const orb_speed = 0.4;
+  const orb_size = 0.02*Math.max(canvas.width, canvas.height);
   const orbs = [
     { x: canvas.width * 0.2, y: canvas.height * 0.2, r: orb_size, dx: orb_speed, dy: orb_speed, color: { r: 82, g: 70, b: 255 } }, //Darker blue
     { x: canvas.width * 0.7, y: canvas.height * 0.3, r: orb_size, dx: -orb_speed, dy: -orb_speed, color: { r: 62, g: 226, b: 196 } }, //Pastel Green
