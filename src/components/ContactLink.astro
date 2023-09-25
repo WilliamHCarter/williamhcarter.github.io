@@ -1,0 +1,19 @@
+---
+// ContactLink.astro
+export interface props {
+  icon: string;
+  href: string;
+  text: string;
+}
+
+const { icon, href, text } = Astro.props;
+---
+
+<div class="flex items-center px-4 py-2 hover:bg-teal hover:bg-opacity-25 rounded-md">
+  <img
+    src={`/${icon}.svg`}
+    alt={`${icon}-icon`}
+    class="inline-block w-6 mr-1 fill-teal dark:fill-dteal"
+  />
+  <a href={href} class="text-teal dark:text-dteal text-base font-semibold">{text}</a>
+</div>
