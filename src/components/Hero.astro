@@ -20,7 +20,7 @@
 <script>
   const canvas = document.getElementById("orbs") as HTMLCanvasElement;
   const ctx = canvas.getContext("2d") as CanvasRenderingContext2D;
-  const MAX_DIM = 400; // Maximum size for either width or height
+  const MAX_DIM = 300; // Maximum size for either width or height
   function sizeCanvas(){
   const larger = Math.max(canvas.offsetWidth, canvas.offsetHeight);
   const scale = larger > MAX_DIM ? larger / MAX_DIM : 1;
