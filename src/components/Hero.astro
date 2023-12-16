@@ -39,18 +39,23 @@
     { x: canvas.width * 0.8, y: canvas.height * 0.8, r: orb_size, dx: -orb_speed, dy: -orb_speed, color: { r: 170, g: 226, b: 255 } }  // Pastel blue
   ];
   const THRESHOLD = 0.5;
+  let lastFrameTime = Date.now();
 
-  function drawOrbs() {
-    
-    ctx.clearRect(0, 0, canvas.width, canvas.height);
-    const imageData = ctx.createImageData(canvas.width, canvas.height);
-    //Move Orbs
-    for (const orb of orbs) {
-      orb.x += orb.dx;
-      orb.y += orb.dy;
-      orb.dx = orb.x - orb.r <= 0 || orb.x + orb.r >= canvas.width ? -orb.dx : orb.dx;
-      orb.dy = orb.y - orb.r <= 0 || orb.y + orb.r >= canvas.height ? -orb.dy : orb.dy;
-    }
+function drawOrbs() {
+  const currentTime = Date.now();
+  const deltaTime = (currentTime - lastFrameTime) / 20;
+  lastFrameTime = currentTime;
+
+  ctx.clearRect(0, 0, canvas.width, canvas.height);
+  const imageData = ctx.createImageData(canvas.width, canvas.height);
+
+  //Move Orbs
+  for (const orb of orbs) {
+    orb.x += orb.dx * deltaTime;
+    orb.y += orb.dy * deltaTime;
+    orb.dx = orb.x - orb.r <= 0 || orb.x + orb.r >= canvas.width ? -orb.dx : orb.dx;
+    orb.dy = orb.y - orb.r <= 0 || orb.y + orb.r >= canvas.height ? -orb.dy : orb.dy;
+  }
 
     let influenceFactor = 0.8 * (2 / (orbs.length * 0.6)); //Determines blend shape
     var idx = 0;
