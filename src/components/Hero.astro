@@ -36,14 +36,25 @@
   sizeCanvas();
   addEventListener("resize", sizeCanvas);
 
-  const orbSize = 0.024 * Math.max(canvas.width, canvas.height);
+  let orbSize = 0.024 * Math.max(canvas.width, canvas.height);
+  if (canvas.height >= canvas.width) {
+    orbSize *= 2;
+  }
 
-  const orbPositions: [number, number][] = [
-    [canvas.width * 0.2, canvas.height * 0.2],
-    [canvas.width * 0.7, canvas.height * 0.3],
-    [canvas.width * 0.4, canvas.height * 0.6],
-    [canvas.width * 0.8, canvas.height * 0.8],
-  ];
+  const orbPositions: [number, number][] =
+    canvas.width >= canvas.height
+      ? [
+          [canvas.width * 0.2, canvas.height * 0.2],
+          [canvas.width * 0.7, canvas.height * 0.3],
+          [canvas.width * 0.4, canvas.height * 0.6],
+          [canvas.width * 0.8, canvas.height * 0.8],
+        ]
+      : [
+          [canvas.width * 0.7, canvas.height * 0.3],
+          [canvas.width * 0.3, canvas.height * 0.8],
+          [canvas.width * 0.6, canvas.height * 0.4],
+          [canvas.width * 0.2, canvas.height * 0.2],
+        ];
 
   const orbColors: [number, number, number][] = [
     [82 / 255, 70 / 255, 1], // Darker blue
@@ -152,7 +163,7 @@
   gl.bufferData(
     gl.ARRAY_BUFFER,
     new Float32Array([-1.0, -1.0, 1.0, -1.0, -1.0, 1.0, -1.0, 1.0, 1.0, -1.0, 1.0, 1.0]),
-    gl.STATIC_DRAW,
+    gl.STATIC_DRAW
   );
 
   gl.enableVertexAttribArray(positionAttribute);
