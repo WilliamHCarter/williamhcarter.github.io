@@ -7,27 +7,44 @@ import WorkCard from "./WorkCard.astro";
     <h3
       class="font-semibold text-2xl underline underline-offset-4 decoration-darkhl decoration-4 mt-3 mb-4"
     >
-      Work
+      Projects
     </h3>
   </div>
   <div class="grid grid-cols-1 grid:grid-cols-2 gap-4 p-0">
     <WorkCard
-    src="/rattlesnakeridge.webp"
-    srcmobile="/rattlesnakeridge.webp"
-    title="Rattlesnake Ridge"
-    body="Multi-agent ML Mystery Game"
-    link="https://github.com/WilliamHCarter/rattlesnakeridge"
-    techStack={[
-      {
-        alt: "React",
-        src: "https://img.shields.io/badge/-React-45b8d8?style=flat-square&logo=react&logoColor=white",
-      },
-      {
-        alt: "Flask",
-        src: "https://img.shields.io/badge/-Flask-000000?style=flat-square&logo=flask&logoColor=white",
-      },
-    ]}
-  />
+      src="/rattlesnakeridge.webp"
+      srcmobile="/rattlesnakeridge.webp"
+      title="Rattlesnake Ridge"
+      body="Multi-agent ML Mystery Game"
+      link="https://github.com/WilliamHCarter/rattlesnakeridge"
+      techStack={[
+        {
+          alt: "React",
+          src: "https://img.shields.io/badge/-React-45b8d8?style=flat-square&logo=react&logoColor=white",
+        },
+        {
+          alt: "Flask",
+          src: "https://img.shields.io/badge/-Flask-000000?style=flat-square&logo=flask&logoColor=white",
+        },
+      ]}
+    />
+    <WorkCard
+      src="/lyremusicplayer.webp"
+      srcmobile="/lyremusicplayer.webp"
+      title="Lyre"
+      body="Album-focused music player"
+      link="https://github.com/WilliamHCarter/lyremusicplayer"
+      techStack={[
+        {
+          alt: "SolidJS",
+          src: "https://img.shields.io/badge/-SolidJS-2C4F7C?style=flat-square&logo=solid&logoColor=white",
+        },
+        {
+          alt: "Astro",
+          src: "https://img.shields.io/badge/-Astro-FF5D01?style=flat-square&logo=astro&logoColor=white",
+        },
+      ]}
+    />
     <WorkCard
       src="/movinghomes.webp"
       srcmobile="/movinghomes.webp"
@@ -78,7 +95,7 @@ import WorkCard from "./WorkCard.astro";
   </div>
 </div>
 
-<!-- Parallax image effect for Cards 
+<!-- Parallax image effect for Cards
 <script>
   const heroes = document.querySelectorAll(".img");
   const parallaxEffect = () => {
