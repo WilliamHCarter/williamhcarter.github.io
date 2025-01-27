@@ -1,5 +1,5 @@
 {
-  "name": "",
+  "name": "williamhcarter.github.io",
   "type": "module",
   "version": "0.0.1",
   "scripts": {
@@ -13,8 +13,12 @@
     "@astrojs/solid-js": "^3.0.1",
     "@astrojs/tailwind": "^5.0.0",
     "@fontsource/inter": "^4.5.15",
-    "astro": "^3.1.0",
+    "astro": "^5.1.9",
     "solid-js": "^1.7.11",
     "tailwindcss": "^3.3.0"
+  },
+  "devDependencies": {
+    "@webgpu/types": "^0.1.53",
+    "typescript": "^5.7.3"
   }
 }
