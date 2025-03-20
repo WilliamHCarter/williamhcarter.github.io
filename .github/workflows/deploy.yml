@@ -14,33 +14,22 @@ jobs:
   build:
     runs-on: ubuntu-latest
     steps:
-      - name: Checkout repository
+      - name: Checkout your repository using git
         uses: actions/checkout@v4
 
-      - name: Setup PNPM
-        uses: pnpm/action-setup@v2.2.4
+      - name: Setup upload-artifact
+        uses: actions/upload-artifact@v3
         with:
-          version: 8
+          name: dummy-artifact
+          path: README.md
+          retention-days: 1
+          if-no-files-found: ignore
 
-      - name: Setup Node.js
-        uses: actions/setup-node@v4
+      - name: Install, build, and upload your site
+        uses: withastro/action@v3.0.2
         with:
+          package-manager: pnpm
           node-version: 18
-          cache: "pnpm"
-
-      - name: Install dependencies
-        run: pnpm install --frozen-lockfile
-
-      - name: Build site
-        run: pnpm run build
-
-      - name: Setup Pages
-        uses: actions/configure-pages@v4
-
-      - name: Upload artifact
-        uses: actions/upload-pages-artifact@v2
-        with:
-          path: dist
 
   deploy:
     needs: build
