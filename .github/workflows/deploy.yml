@@ -1,36 +1,23 @@
 name: Deploy to GitHub Pages
-
 on:
   push:
     branches: [master]
   workflow_dispatch:
-
 permissions:
   contents: read
   pages: write
   id-token: write
-
 jobs:
   build:
     runs-on: ubuntu-latest
     steps:
       - name: Checkout your repository using git
         uses: actions/checkout@v4
-
-      - name: Setup upload-artifact
-        uses: actions/upload-artifact@v4
-        with:
-          name: dummy-artifact
-          path: README.md
-          retention-days: 1
-          if-no-files-found: ignore
-
       - name: Install, build, and upload your site
         uses: withastro/action@v3.0.2
         with:
           package-manager: pnpm
           node-version: 18
-
   deploy:
     needs: build
     runs-on: ubuntu-latest
@@ -40,4 +27,4 @@ jobs:
     steps:
       - name: Deploy to GitHub Pages
         id: deployment
-        uses: actions/deploy-pages@v2
+        uses: actions/deploy-pages@v4
