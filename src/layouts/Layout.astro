@@ -10,7 +10,7 @@ import "@fontsource/inter/500.css";
 import "@fontsource/inter/600.css";
 ---
 
-<!DOCTYPE html>
+<!doctype html>
 <html lang="en">
   <head>
     <meta charset="UTF-8" />
@@ -21,8 +21,8 @@ import "@fontsource/inter/600.css";
     <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
     <meta name="generator" content={Astro.generator} />
     <title>{title}</title>
-    <script is:inline> 
-          const theme = (() => {
+    <script is:inline>
+      const theme = (() => {
         if (typeof localStorage !== "undefined" && localStorage.getItem("theme")) {
           return localStorage.getItem("theme");
         }
@@ -55,7 +55,7 @@ import "@fontsource/inter/600.css";
 </html>
 
 <style>
-    h3 {
+  h3 {
     font-size: 2rem;
     font-weight: 700;
     margin: 0;

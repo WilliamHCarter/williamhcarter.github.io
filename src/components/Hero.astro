@@ -1,3 +1,7 @@
+---
+import TextRotateDemo from "../components/TextRotateDemo";
+---
+
 <div class="relative pc:h-[70svh] h-[65svh] overflow-hidden flex">
   <!-- Blurred Background -->
   <div class="fixed w-full h-full z-[2] backdrop-blur-md pc:backdrop-blur-lg bg-[ffffff60]"></div>
@@ -7,14 +11,18 @@
 
   <!-- Content -->
   <div class="z-[3] flex flex-col items-center justify-center h-full w-full animate-intro-100 mt-5">
-    <h2 class="text-5xl font-semibold">Will Carter</h2>
-    <p class="text-xl mt-1">ML Engineer & Full Stack Developer</p>
+    <h2 class="text-5xl pc:text-7xl font-semibold pc:mb-4">Will Carter</h2>
+
+    <!-- Replace the static text with the dynamic TextRotateDemo -->
+    <div class="text-xl mt-1">
+      <TextRotateDemo client:load />
+    </div>
+
     <p id="fps"></p>
   </div>
 </div>
 
 <!-- Orb Motion Script -->
-
 <script>
   const canvas = document.getElementById("orbs") as HTMLCanvasElement;
   const gl =
@@ -163,7 +171,7 @@
   gl.bufferData(
     gl.ARRAY_BUFFER,
     new Float32Array([-1.0, -1.0, 1.0, -1.0, -1.0, 1.0, -1.0, 1.0, 1.0, -1.0, 1.0, 1.0]),
-    gl.STATIC_DRAW
+    gl.STATIC_DRAW,
   );
 
   gl.enableVertexAttribArray(positionAttribute);
