@@ -24,7 +24,12 @@ import TextRotateDemo from "../components/TextRotateDemo";
 
 <!-- Orb Motion Script -->
 <script>
+  let orbsInitialized = false;
+
   function initOrbs() {
+    if (orbsInitialized) return;
+
+    orbsInitialized = true;
     const canvas = document.getElementById("orbs") as HTMLCanvasElement;
     const gl =
       canvas.getContext("webgl") ||
