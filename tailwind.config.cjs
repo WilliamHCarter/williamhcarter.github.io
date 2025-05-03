@@ -4,32 +4,31 @@ module.exports = {
   content: ["./src/**/*.{astro,html,js,jsx,md,mdx,svelte,ts,tsx,vue}"],
   theme: {
     extend: {
-
       keyframes: {
         intro: {
-          '0%': {
-            transform: 'translateY(10px)',
-            opacity: '0',
+          "0%": {
+            transform: "translateY(10px)",
+            opacity: "0",
           },
-          '100%': {
-            transform: 'translateY(0)',
-            opacity: '1',
+          "100%": {
+            transform: "translateY(0)",
+            opacity: "1",
           },
         },
         fade: {
-          '0%': {
-            opacity: '0',
+          "0%": {
+            opacity: "0",
           },
-          '100%': {
-            opacity: '1',
+          "100%": {
+            opacity: "1",
           },
         },
       },
       animation: {
-        'intro-100': 'intro 0.8s 80ms backwards',
-        'intro-200': 'intro 0.8s 200ms backwards',
-        'intro-300': 'intro 0.8s 300ms backwards',
-        'quick-fade': 'fade 0.1s 0ms backwards',
+        "intro-100": "intro 0.8s 80ms backwards",
+        "intro-200": "intro 0.5s 200ms backwards",
+        "intro-300": "intro 0.8s 300ms backwards",
+        "quick-fade": "fade 0.1s 0ms backwards",
       },
     },
     colors: {
@@ -51,5 +50,4 @@ module.exports = {
   },
   plugins: [],
   darkMode: "class",
-  
 };
