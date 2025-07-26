@@ -133,17 +133,10 @@ import TextRotateDemo from "../components/TextRotateDemo";
           totalShapeInfluence += shapeInfluence;
       }
 
-      if (totalShapeInfluence > u_threshold) {
-          vec3 blendedColor;
-          if (totalShapeInfluence > 0.0) {
-              blendedColor = color / totalColorInfluence;
-          } else {
-              blendedColor = vec3(0.0);
-          }
-          gl_FragColor = vec4(blendedColor, 1.0);
-      } else {
-          gl_FragColor = vec4(0.0, 0.0, 0.0, 0.0);
-      }
+      float influence = step(u_threshold, totalShapeInfluence);
+      float validInfluence = step(0.0, totalShapeInfluence);
+      vec3 blendedColor = color / max(totalColorInfluence, 0.001);
+      gl_FragColor = vec4(blendedColor * influence * validInfluence, influence);
     }
     `;
     gl.viewport(0, 0, canvas.width, canvas.height);
