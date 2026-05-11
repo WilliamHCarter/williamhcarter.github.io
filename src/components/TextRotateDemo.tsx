@@ -9,7 +9,7 @@ export default function TextRotateDemo() {
   }
 
   return (
-    <div class="flex flex-row items-center justify-center" style={{ "min-width": "120px" }}>
+    <div class="flex flex-row items-center justify-center">
       <p class="flex whitespace-pre">
         {isClient() ? (
           <TextRotate

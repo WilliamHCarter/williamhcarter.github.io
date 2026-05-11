@@ -2,11 +2,11 @@ import {
   createSignal,
   createEffect,
   onCleanup,
-  splitProps,
   mergeProps,
   createMemo,
 } from "solid-js";
-import { Motion, Presence, PresenceProps, MotionProps, Transition } from "@motionone/solid";
+import { Motion, Presence } from "@motionone/solid";
+import type { PresenceProps, MotionProps, Transition } from "@motionone/solid";
 
 interface TextRotateProps {
   texts: string[];
