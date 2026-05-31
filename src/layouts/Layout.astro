@@ -49,7 +49,7 @@ import "../styles/global.css";
   </head>
 
   <body class="bg-offw dark:bg-dark">
-    <div class="fixed w-full mx-auto z-10 backdrop-blur-sm bg-[#ffffff60] dark:bg-dnav">
+    <div class="site-header">
       <Navbar />
     </div>
     <slot />
@@ -57,6 +57,51 @@ import "../styles/global.css";
 </html>
 
 <style>
+  :global(.site-header) {
+    position: fixed;
+    inset: 0 0 auto;
+    z-index: 10;
+  }
+
+  :global(.site-navbar) {
+    width: 100%;
+    margin-inline: auto;
+    background-color: rgb(255 255 255 / 38%);
+    backdrop-filter: blur(4px);
+  }
+
+  :global(.dark .site-navbar) {
+    background-color: rgb(32 32 35 / 50%);
+  }
+
+  @media (min-width: 700px) and (prefers-reduced-motion: no-preference) {
+    @supports (animation-timeline: scroll()) {
+      :global(.site-navbar) {
+        animation: compact-navbar linear both;
+        animation-timeline: scroll(root block);
+        animation-range: 0 240px;
+      }
+    }
+  }
+
+  @keyframes compact-navbar {
+    from {
+      width: 100%;
+      margin-top: 0;
+      border-radius: 0;
+      box-shadow: none;
+    }
+
+    to {
+      width: min(94vw, 72rem);
+      margin-top: 1rem;
+      border-radius: 0.75rem;
+      box-shadow:
+        0 0.65rem 1.5rem rgb(0 0 0 / 12%),
+        0 0.15rem 0.45rem rgb(0 0 0 / 8%);
+    }
+  }
+
   h3 {
     font-size: 2rem;
     font-weight: 700;
