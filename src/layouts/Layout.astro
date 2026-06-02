@@ -5,9 +5,10 @@ export interface Props {
 
 const { title } = Astro.props;
 import Navbar from "../components/Navbar.astro";
-import "@fontsource/inter/400.css";
-import "@fontsource/inter/500.css";
-import "@fontsource/inter/600.css";
+import "@fontsource/geist/400.css";
+import "@fontsource/geist/500.css";
+import "@fontsource/geist/600.css";
+import "@fontsource/geist/700.css";
 import "../styles/global.css";
 ---
 
@@ -20,8 +21,7 @@ import "../styles/global.css";
     <meta name="author" content="William Carter" />
     <meta property="og:image" content="/thumbnail.webp" />
     <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
-    <link rel="preload" href="/zfetch.png" as="image" fetchpriority="high" />
-    <meta name="generator" content={Astro.generator} />
+<meta name="generator" content={Astro.generator} />
     <title>{title}</title>
     <script is:inline>
       const theme = (() => {
@@ -46,9 +46,34 @@ import "../styles/global.css";
         localStorage.setItem("theme", currentTheme);
       }
     </script>
+    <script is:inline>
+      (function () {
+        var navbar = null;
+        function update() {
+          if (!navbar) navbar = document.querySelector('.site-navbar');
+          if (!navbar) return;
+          if (window.scrollY > 200) {
+            navbar.setAttribute('data-scrolled', '');
+          } else {
+            navbar.removeAttribute('data-scrolled');
+          }
+        }
+        window.addEventListener('scroll', update, { passive: true });
+        document.addEventListener('DOMContentLoaded', update);
+      })();
+    </script>
   </head>
 
   <body class="bg-offw dark:bg-dark">
+    <svg width="0" height="0" style="position:absolute;pointer-events:none;" aria-hidden="true">
+      <defs>
+        <filter id="navbar-glass-distortion" x="0%" y="0%" width="100%" height="100%">
+          <feTurbulence type="fractalNoise" baseFrequency="0.025 0.025" numOctaves="2" seed="42" result="noise" />
+          <feGaussianBlur in="noise" stdDeviation="1.5" result="blurred" />
+          <feDisplacementMap in="SourceGraphic" in2="blurred" scale="12" xChannelSelector="R" yChannelSelector="G" />
+        </filter>
+      </defs>
+    </svg>
     <div class="site-header">
       <Navbar />
     </div>
@@ -68,10 +93,42 @@ import "../styles/global.css";
     margin-inline: auto;
     background-color: rgb(255 255 255 / 38%);
     backdrop-filter: blur(4px);
+    position: relative;
+    isolation: isolate;
+    transition: backdrop-filter 0.35s ease;
   }
 
   :global(.dark .site-navbar) {
     background-color: rgb(32 32 35 / 50%);
+  }
+
+  /* Rim light — fades in with glass effect */
+  :global(.site-navbar::before) {
+    content: '';
+    position: absolute;
+    inset: 0;
+    z-index: 0;
+    border-radius: inherit;
+    box-shadow: inset 0 0 14px -4px rgba(255, 255, 255, 0.55);
+    opacity: 0;
+    pointer-events: none;
+    transition: opacity 0.35s ease;
+  }
+
+  /* Backdrop blur + distortion layer — fades in with glass effect */
+  :global(.site-navbar::after) {
+    content: '';
+    position: absolute;
+    inset: 0;
+    z-index: -1;
+    border-radius: inherit;
+    backdrop-filter: blur(22px);
+    -webkit-backdrop-filter: blur(22px);
+    filter: url(#navbar-glass-distortion);
+    -webkit-filter: url(#navbar-glass-distortion);
+    opacity: 0;
+    pointer-events: none;
+    transition: opacity 0.35s ease;
   }
 
   @media (min-width: 700px) and (prefers-reduced-motion: no-preference) {
@@ -81,7 +138,28 @@ import "../styles/global.css";
         animation-timeline: scroll(root block);
         animation-range: 0 240px;
       }
+
+      :global(.site-navbar[data-scrolled]) {
+        backdrop-filter: none;
+        -webkit-backdrop-filter: none;
+      }
+
+      :global(.site-navbar[data-scrolled]::before),
+      :global(.site-navbar[data-scrolled]::after) {
+        opacity: 1;
+      }
+
+      :global(.site-navbar .navlinks) {
+        animation: compact-navlinks linear both;
+        animation-timeline: scroll(root block);
+        animation-range: 0 240px;
+      }
     }
+  }
+
+  @keyframes compact-navlinks {
+    from { gap: 2rem; }
+    to { gap: 1rem; }
   }
 
   @keyframes compact-navbar {
@@ -93,12 +171,13 @@ import "../styles/global.css";
     }
 
     to {
-      width: min(94vw, 72rem);
+      width: min(90vw, 56rem);
       margin-top: 1rem;
       border-radius: 0.75rem;
       box-shadow:
         0 0.65rem 1.5rem rgb(0 0 0 / 12%),
-        0 0.15rem 0.45rem rgb(0 0 0 / 8%);
+        0 0.15rem 0.45rem rgb(0 0 0 / 8%),
+        0 0 20px -6px rgba(255, 255, 255, 0.2);
     }
   }
 

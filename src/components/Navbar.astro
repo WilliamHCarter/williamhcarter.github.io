@@ -2,19 +2,17 @@
 import MobileMenu from "../components/MobileMenu.jsx";
 import Logo from "../components/Logo.astro";
 import ThemeButton from "./ThemeButton.jsx";
+import { profile } from "../data/profile";
 ---
 
 <div class="site-navbar">
-  <div class="flex justify-between items-center max-w-7xl mx-auto px-2 py-4">
+  <div class="flex justify-between items-center max-w-7xl mx-auto px-2 py-4 relative z-[1]">
     <Logo />
     <nav class="navlinks hidden pc:flex justify-end items-center gap-8 mr-[2vw]">
       <a class="text-dark dark:text-offw font-[500] hover:text-teal m-0" href="/projects">
         Projects</a
       >
-      <a
-        class="text-dark dark:text-offw font-[500] hover:text-teal m-0"
-        href="/WillCarterResume.pdf"
-      >
+      <a class="text-dark dark:text-offw font-[500] hover:text-teal m-0" href={profile.resume}>
         Resume
       </a>
       <a class="text-dark dark:text-offw font-[500] hover:text-teal m-0" href="/contact">
@@ -23,7 +21,7 @@ import ThemeButton from "./ThemeButton.jsx";
       <div
         class="px-4 py-2 bg-g hover:bg-ghl dark:hover:bg-[#ffffff25] dark:bg-[#ffffff14] rounded-md"
       >
-        <a class="flex items-center" href="https://github.com/WilliamHCarter" aria-label="Github">
+        <a class="flex items-center" href={profile.github} aria-label="Github">
           <img
             class="inline-block w-4 mr-2 filter grayscale contrast-[8500] dark:invert"
             src="/github.svg"

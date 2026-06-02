@@ -1,4 +1,5 @@
 import { createSignal } from "solid-js";
+import { navLinks } from "../data/nav";
 
 function classNames(...classes: (string | undefined | boolean)[]): string {
   return classes.filter(Boolean).join(" ");
@@ -10,19 +11,6 @@ export default function Example() {
   const toggleMenu = () => {
     setIsOpen(!isOpen());
   };
-
-  interface MenuItem {
-    label: string;
-    href: string;
-  }
-
-  const menuItems: MenuItem[] = [
-    { label: "About", href: "/" },
-    { label: "Projects", href: "/projects" },
-    { label: "Resume", href: "/WillCarterResume.pdf" },
-    { label: "Contact", href: "/contact" },
-    { label: "Github", href: "https://github.com/WilliamHCarter" },
-  ];
 
   return (
     <>
@@ -42,7 +30,7 @@ export default function Example() {
         }`}
       >
         <div class="py-1">
-          {menuItems.map((item) => {
+          {navLinks.map((item) => {
             const menuItemClass =
               "block px-4 py-2 text-sm text-gray-700 dark:text-offw hover:bg-gray-100 hover:text-gray-900";
             return (

@@ -1,5 +1,6 @@
 import { createSignal } from "solid-js";
 import TextRotate from "./TextRotate";
+import { profile } from "../data/profile";
 
 export default function TextRotateDemo() {
   const [isClient, setIsClient] = createSignal(false);
@@ -13,7 +14,7 @@ export default function TextRotateDemo() {
       <p class="flex whitespace-pre">
         {isClient() ? (
           <TextRotate
-            texts={["Software", "Systems", "ML", "Full Stack"]}
+            texts={[...profile.titles]}
             mainClassName="pc:text-2xl px-2 sm:px-2 md:px-3 overflow-hidden py-0.5 sm:py-1 md:py-2 justify-center rounded-lg z-10 backdrop-blur-sm bg-[#ffffff60] dark:bg-dnav"
             staggerFrom="last"
             initial={{ y: "100%" }}

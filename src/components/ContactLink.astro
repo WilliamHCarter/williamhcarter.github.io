@@ -9,7 +9,7 @@ export interface props {
 const { icon, href, text } = Astro.props;
 ---
 
-<div class="flex items-center px-4 py-2 hover:bg-teal hover:bg-opacity-25 rounded-md">
+<div class="flex items-center px-4 py-2 hover:bg-teal/25 rounded-md">
   <img
     src={`/${icon}.svg`}
     alt={`${icon}-icon`}

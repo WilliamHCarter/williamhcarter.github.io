@@ -1,3 +1,53 @@
-@tailwind base;
-@tailwind components;
-@tailwind utilities;
+@import "tailwindcss";
+
+@custom-variant dark (&:where(.dark, .dark *));
+
+@theme {
+  /* Clear default colors — project overrides the entire palette */
+  --color-*: initial;
+  --color-light: #5f92cc;
+  --color-dark: #202023;
+  --color-darkhl: #525252;
+  --color-offw: rgb(252, 250, 249);
+  --color-teal: #2c7a7b;
+  --color-dteal: #3cacad;
+  --color-g: #e2e8f0;
+  --color-ghl: #cbd5e0;
+  --color-dnav: rgba(32, 32, 35, 0.5);
+
+  /* Clear default breakpoints — project replaces them entirely */
+  --breakpoint-*: initial;
+  --breakpoint-pc: 700px;
+  --breakpoint-grid: 750px;
+  --breakpoint-contain: 1024px;
+
+  /* Font */
+  --font-sans: "Geist", ui-sans-serif, system-ui, sans-serif,
+    "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol", "Noto Color Emoji";
+
+  /* Custom animations */
+  --animate-intro-100: intro 0.8s 80ms backwards;
+  --animate-intro-200: intro 0.5s 200ms backwards;
+  --animate-intro-300: intro 0.8s 300ms backwards;
+  --animate-quick-fade: fade 0.1s 0ms backwards;
+}
+
+@keyframes intro {
+  0% {
+    transform: translateY(10px);
+    opacity: 0;
+  }
+  100% {
+    transform: translateY(0);
+    opacity: 1;
+  }
+}
+
+@keyframes fade {
+  0% {
+    opacity: 0;
+  }
+  100% {
+    opacity: 1;
+  }
+}

@@ -1,5 +1,6 @@
 ---
 import ContactLink from "./ContactLink.astro";
+import { contactLinks } from "../data/contact";
 ---
 
 <div class="animate-intro-300">
@@ -12,17 +13,9 @@ import ContactLink from "./ContactLink.astro";
   </div>
 
   <div class="flex flex-col items-start space-y-1">
-    <ContactLink icon="github" href="https://github.com/WilliamHCarter" text="@WilliamHCarter" />
-    <ContactLink
-      icon="linkedin"
-      href="https://www.linkedin.com/in/williamhcarter/"
-      text="@WilliamHCarter"
-    />
-    <ContactLink
-      icon="mail"
-      href="mailto:williamhcarter75@gmail.com"
-      text="williamhcarter75@gmail.com"
-    />
+    {contactLinks.map((link) => (
+      <ContactLink icon={link.icon} href={link.href} text={link.text} />
+    ))}
   </div>
   <div class="mb-20"></div>
 </div>
