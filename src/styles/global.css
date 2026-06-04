@@ -8,7 +8,7 @@
   --color-light: #5f92cc;
   --color-dark: #202023;
   --color-darkhl: #525252;
-  --color-offw: rgb(252, 250, 249);
+  --color-offw: #ebeced;
   --color-teal: #2c7a7b;
   --color-dteal: #3cacad;
   --color-g: #e2e8f0;
@@ -22,8 +22,9 @@
   --breakpoint-contain: 1024px;
 
   /* Font */
-  --font-sans: "Geist", ui-sans-serif, system-ui, sans-serif,
-    "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol", "Noto Color Emoji";
+  --font-sans:
+    "Geist", ui-sans-serif, system-ui, sans-serif, "Apple Color Emoji", "Segoe UI Emoji",
+    "Segoe UI Symbol", "Noto Color Emoji";
 
   /* Custom animations */
   --animate-intro-100: intro 0.8s 80ms backwards;
