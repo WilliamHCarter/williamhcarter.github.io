@@ -15,7 +15,7 @@ export default function TextRotateDemo() {
         {isClient() ? (
           <TextRotate
             texts={[...profile.titles]}
-            mainClassName="pc:text-2xl px-2 sm:px-2 md:px-3 overflow-hidden py-0.5 sm:py-1 md:py-2 justify-center rounded-lg z-10 backdrop-blur-sm bg-[#ffffff60] dark:bg-dnav"
+            mainClassName="text-rotate-glass pc:text-2xl px-2 sm:px-2 md:px-3 overflow-hidden py-0.5 sm:py-1 md:py-2 justify-center rounded-lg z-10"
             staggerFrom="last"
             initial={{ y: "100%" }}
             animate={{ y: 0 }}
@@ -27,7 +27,7 @@ export default function TextRotateDemo() {
           />
         ) : (
           // Fallback for server-side rendering
-          <span class="pc:text-2xl text-white px-2 sm:px-2 md:px-3 bg-[#ffffff60] overflow-hidden py-0.5 sm:py-1 md:py-2 rounded-lg">
+          <span class="text-rotate-glass pc:text-2xl text-white px-2 sm:px-2 md:px-3 overflow-hidden py-0.5 sm:py-1 md:py-2 rounded-lg">
             Software
           </span>
         )}
