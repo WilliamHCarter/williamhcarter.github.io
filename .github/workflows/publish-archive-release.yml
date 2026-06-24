@@ -1,0 +1,121 @@
+name: Publish archive release
+
+on:
+  workflow_dispatch:
+    inputs:
+      release_id:
+        description: "Archive directory and public URL segment, for example 2024"
+        required: true
+        type: string
+      source_tag:
+        description: "Immutable source tag to build, for example site-2024"
+        required: true
+        type: string
+      node_version:
+        description: "Node version required by this historical release"
+        required: true
+        default: "22"
+        type: string
+
+permissions:
+  contents: write
+
+concurrency:
+  group: archive-release-${{ inputs.release_id }}
+  cancel-in-progress: false
+
+jobs:
+  publish:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Check out archived source
+        uses: actions/checkout@v4
+        with:
+          ref: ${{ inputs.source_tag }}
+          path: release
+          fetch-depth: 0
+
+      - name: Validate release inputs
+        shell: bash
+        env:
+          RELEASE_ID: ${{ inputs.release_id }}
+          SOURCE_TAG: ${{ inputs.source_tag }}
+        run: |
+          set -euo pipefail
+          [[ "$RELEASE_ID" =~ ^[a-z0-9]+([a-z0-9-]*[a-z0-9])?$ ]]
+          [[ "$SOURCE_TAG" =~ ^site-[a-z0-9]+([a-z0-9-]*[a-z0-9])?$ ]]
+          git -C release show-ref --verify --quiet "refs/tags/$SOURCE_TAG"
+
+      - name: Set up Node
+        uses: actions/setup-node@v4
+        with:
+          node-version: ${{ inputs.node_version }}
+          cache: npm
+          cache-dependency-path: release/package-lock.json
+
+      - name: Install archived dependencies
+        working-directory: release
+        run: npm ci
+
+      - name: Build static archive release
+        working-directory: release
+        env:
+          ARCHIVE_BASE: /archive/${{ inputs.release_id }}
+        run: npm run build
+
+      - name: Check out static archive output
+        id: archive_static
+        continue-on-error: true
+        uses: actions/checkout@v4
+        with:
+          ref: archive-static
+          path: archive-static
+
+      - name: Initialize static archive output
+        if: steps.archive_static.outcome == 'failure'
+        shell: bash
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: |
+          set -euo pipefail
+          rm -rf archive-static
+          git init -b archive-static archive-static
+          git -C archive-static config user.name "github-actions[bot]"
+          git -C archive-static config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git -C archive-static remote add origin "https://x-access-token:${GH_TOKEN}@github.com/${GITHUB_REPOSITORY}.git"
+
+      - name: Publish immutable static output
+        shell: bash
+        env:
+          RELEASE_ID: ${{ inputs.release_id }}
+          SOURCE_TAG: ${{ inputs.source_tag }}
+        run: |
+          set -euo pipefail
+          destination="archive-static/$RELEASE_ID"
+
+          if [[ -e "$destination" ]]; then
+            echo "Archive release already exists: $RELEASE_ID" >&2
+            exit 1
+          fi
+
+          mkdir -p "$destination"
+          cp -a release/dist/. "$destination/"
+          source_sha="$(git -C release rev-parse HEAD)"
+          SOURCE_SHA="$source_sha" node --input-type=module -e '
+            import { writeFile } from "node:fs/promises";
+            await writeFile(
+              process.argv[1],
+              `${JSON.stringify({
+                releaseId: process.env.RELEASE_ID,
+                sourceTag: process.env.SOURCE_TAG,
+                sourceSha: process.env.SOURCE_SHA,
+                nodeVersion: process.version,
+              }, null, 2)}\n`,
+            );
+          ' "$destination/release.json"
+
+          git -C archive-static config user.name "github-actions[bot]"
+          git -C archive-static config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git -C archive-static add "$RELEASE_ID"
+          git -C archive-static commit -m "archive: publish $RELEASE_ID from $SOURCE_TAG"
+          git -C archive-static push origin HEAD:archive-static
