@@ -1,4 +1,5 @@
 import { createSignal, createEffect } from "solid-js";
+import { sitePath } from "../lib/site-path";
 export default function ThemeButton() {
   const [theme, setTheme] = createSignal(localStorage.getItem("theme") ?? "dark");
 
@@ -20,8 +21,8 @@ export default function ThemeButton() {
       aria-label="Toggle Dark Mode"
       onClick={toggleTheme}
     >
-      <img src="/../moon.svg" alt="moon-icon" class=" w-5 h-5 m-2 self-center invert dark:hidden" />
-      <img src="/../sun.svg" alt="sun-icon" class=" w-5 h-5 m-2 self-center hidden dark:block" />
+      <img src={sitePath("/moon.svg")} alt="moon-icon" class=" w-5 h-5 m-2 self-center invert dark:hidden" />
+      <img src={sitePath("/sun.svg")} alt="sun-icon" class=" w-5 h-5 m-2 self-center hidden dark:block" />
     </button>
   );
 }

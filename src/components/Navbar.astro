@@ -3,19 +3,29 @@ import MobileMenu from "../components/MobileMenu.jsx";
 import Logo from "../components/Logo.astro";
 import ThemeButton from "./ThemeButton.jsx";
 import { profile } from "../data/profile";
+import { sitePath } from "../lib/site-path";
 ---
 
 <div class="site-navbar">
   <div class="flex justify-between items-center max-w-7xl mx-auto px-2 py-3 relative z-[1]">
     <Logo />
     <nav class="navlinks hidden pc:flex justify-end items-center gap-6 mr-[2vw]">
-      <a class="text-dark dark:text-offw font-[500] hover:opacity-80 m-0" href="/projects">
+      <a
+        class="text-dark dark:text-offw font-[500] hover:opacity-80 m-0"
+        href={sitePath("/projects")}
+      >
         Projects</a
       >
-      <a class="text-dark dark:text-offw font-[500] hover:opacity-80 m-0" href={profile.resume}>
+      <a
+        class="text-dark dark:text-offw font-[500] hover:opacity-80 m-0"
+        href={sitePath(profile.resume)}
+      >
         Resume
       </a>
-      <a class="text-dark dark:text-offw font-[500] hover:opacity-80 m-0" href="/contact">
+      <a
+        class="text-dark dark:text-offw font-[500] hover:opacity-80 m-0"
+        href={sitePath("/contact")}
+      >
         Contact</a
       >
       <div
@@ -24,7 +34,7 @@ import { profile } from "../data/profile";
         <a class="flex items-center" href={profile.github} aria-label="Github">
           <img
             class="inline-block w-4 mr-2 filter grayscale contrast-[8500] dark:invert"
-            src="/github.svg"
+            src={sitePath("/github.svg")}
             alt="gh-icon"
           />
           <p class="text-dark dark:text-offw text-base font-[500]">Github</p>

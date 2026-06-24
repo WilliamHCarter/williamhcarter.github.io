@@ -1,5 +1,6 @@
 import { createSignal } from "solid-js";
 import { navLinks } from "../data/nav";
+import { sitePath } from "../lib/site-path";
 
 function classNames(...classes: (string | undefined | boolean)[]): string {
   return classes.filter(Boolean).join(" ");
@@ -21,7 +22,7 @@ export default function Example() {
         aria-label="Menu"
         onClick={toggleMenu}
       >
-        <img src="/../menu.svg" alt="menu" class=" w-5 h-5 m-2 self-center dark:invert" />
+        <img src={sitePath("/menu.svg")} alt="menu" class=" w-5 h-5 m-2 self-center dark:invert" />
       </button>
 
       <div
@@ -34,7 +35,7 @@ export default function Example() {
             const menuItemClass =
               "block px-4 py-2 text-sm text-gray-700 dark:text-offw hover:bg-gray-100 hover:text-gray-900";
             return (
-              <a href={item.href} class={menuItemClass}>
+              <a href={item.href.startsWith("http") ? item.href : sitePath(item.href)} class={menuItemClass}>
                 {item.label}
               </a>
             );

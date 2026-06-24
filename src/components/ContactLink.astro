@@ -1,5 +1,7 @@
 ---
 // ContactLink.astro
+import { sitePath } from "../lib/site-path";
+
 export interface props {
   icon: string;
   href: string;
@@ -11,7 +13,7 @@ const { icon, href, text } = Astro.props;
 
 <div class="flex items-center px-4 py-2 hover:bg-teal/25 rounded-md">
   <img
-    src={`/${icon}.svg`}
+    src={sitePath(`/${icon}.svg`)}
     alt={`${icon}-icon`}
     class="inline-block w-6 mr-1 fill-teal dark:fill-dteal"
   />
