@@ -1,38 +1,63 @@
 ---
 import { Image } from "astro:assets";
-import type { ImageMetadata } from "astro";
+import type { ProjectMedia } from "../data/projects";
 
 export interface Props {
   title: string;
   body: string;
-  src: ImageMetadata;
-  srcmobile: ImageMetadata;
+  media: ProjectMedia;
   link: string;
   techStack: Array<{ alt: string; src: string }>;
   loading?: "lazy" | "eager";
   fetchpriority?: "high" | "low" | "auto";
 }
 
-const { src, srcmobile, title, body, link, techStack, loading = "lazy", fetchpriority = "auto" } = Astro.props;
+const { media, title, body, link, techStack, loading = "lazy", fetchpriority = "auto" } = Astro.props;
+const mediaStyle =
+  media.type === "svg"
+    ? `--thumbnail-background: ${media.background}; --thumbnail-padding: ${media.padding ?? "0px"};`
+    : undefined;
+const svgSource =
+  media.type === "svg" ? (typeof media.src === "string" ? media.src : media.src.src) : undefined;
 ---
 
 <div class="link-card flex p-1 mb-8">
   <a class="w-full no-underline leading-[1.4] flex flex-col" href={link}>
-    <div class="thumbnail-container relative overflow-hidden rounded-md bg-[#dddddd]">
-      <Image
-        class="hidden pc:block img image object-cover w-full aspect-[16/10]"
-        src={src}
-        alt={title}
-        loading={loading}
-        fetchpriority={fetchpriority}
-      />
-      <Image
-        class="pc:hidden img image object-cover w-full aspect-[16/10]"
-        src={srcmobile}
-        alt={title}
-        loading={loading}
-        fetchpriority={fetchpriority}
-      />
+    <div
+      class:list={[
+        "thumbnail-container relative aspect-[16/10] overflow-hidden rounded-md bg-[#dddddd]",
+        { "thumbnail-container--svg": media.type === "svg" },
+      ]}
+      style={mediaStyle}
+    >
+      {
+        media.type === "image" ? (
+          <>
+            <Image
+              class="hidden pc:block img image size-full object-cover"
+              src={media.src}
+              alt={title}
+              loading={loading}
+              fetchpriority={fetchpriority}
+            />
+            <Image
+              class="pc:hidden img image size-full object-cover"
+              src={media.mobileSrc ?? media.src}
+              alt={title}
+              loading={loading}
+              fetchpriority={fetchpriority}
+            />
+          </>
+        ) : (
+          <img
+            class="svg-thumbnail block size-full object-contain"
+            src={svgSource}
+            alt={title}
+            loading={loading}
+            fetchpriority={fetchpriority}
+          />
+        )
+      }
       <div class="absolute bottom-0 right-0 scale-[1.4] -translate-x-[20%] flex align-center">
         {
           techStack.map(({ alt, src }) => (
@@ -61,5 +86,13 @@ const { src, srcmobile, title, body, link, techStack, loading = "lazy", fetchpri
   .thumbnail-container:hover {
     transform: scale(1.01);
     box-shadow: 0 8px 12px rgba(0, 0, 0, 0.3);
+  }
+
+  .thumbnail-container--svg {
+    background-color: var(--thumbnail-background);
+  }
+
+  .svg-thumbnail {
+    padding: var(--thumbnail-padding);
   }
 </style>
