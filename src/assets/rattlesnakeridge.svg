@@ -1,0 +1,71 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 320 200" width="800" height="500" role="img" aria-label="Rattlesnake Ridge terminal boot sequence">
+  <title>Rattlesnake Ridge — boot sequence</title>
+  <desc>Animated terminal boot sequence: the log lines and wordmark type themselves in on a loop, with a blinking cursor.</desc>
+  <defs>
+    <radialGradient id="bs-bg" cx="50%" cy="40%" r="75%">
+      <stop offset="0%" stop-color="#123a33"/>
+      <stop offset="60%" stop-color="#08231f"/>
+      <stop offset="100%" stop-color="#030d0c"/>
+    </radialGradient>
+    <linearGradient id="bs-sweep" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0%" stop-color="#c7ffdb" stop-opacity="0"/>
+      <stop offset="50%" stop-color="#c7ffdb" stop-opacity="0.10"/>
+      <stop offset="100%" stop-color="#c7ffdb" stop-opacity="0"/>
+    </linearGradient>
+    <pattern id="bs-scan" width="3" height="3" patternUnits="userSpaceOnUse">
+      <rect width="3" height="1" fill="#000000" opacity="0.26"/>
+    </pattern>
+    <filter id="bs-glow" x="-15%" y="-15%" width="130%" height="130%">
+      <feGaussianBlur stdDeviation="1.3" result="b"/>
+      <feMerge>
+        <feMergeNode in="b"/>
+        <feMergeNode in="SourceGraphic"/>
+      </feMerge>
+    </filter>
+    <clipPath id="bs-panel"><rect x="0" y="0" width="320" height="200" rx="6"/></clipPath>
+    <clipPath id="bs-c1"><rect x="0" y="0" width="0" height="200"><animate attributeName="width" dur="6s" repeatCount="indefinite" keyTimes="0;0.04;0.14;1" values="0;0;320;320"/></rect></clipPath>
+    <clipPath id="bs-c2"><rect x="0" y="0" width="0" height="200"><animate attributeName="width" dur="6s" repeatCount="indefinite" keyTimes="0;0.16;0.30;1" values="0;0;320;320"/></rect></clipPath>
+    <clipPath id="bs-cw"><rect x="0" y="0" width="0" height="200"><animate attributeName="width" dur="6s" repeatCount="indefinite" keyTimes="0;0.33;0.50;1" values="0;0;320;320"/></rect></clipPath>
+    <clipPath id="bs-c3"><rect x="0" y="0" width="0" height="200"><animate attributeName="width" dur="6s" repeatCount="indefinite" keyTimes="0;0.53;0.66;1" values="0;0;320;320"/></rect></clipPath>
+  </defs>
+
+  <style>
+    .bs-bar { fill: #f3c45b; font: 700 8px ui-monospace, SFMono-Regular, Menlo, Consolas, monospace; letter-spacing: 0.6px; }
+    .bs-rule { stroke: #aaf0be; stroke-opacity: 0.28; stroke-width: 1; }
+    .bs-log { fill: #9fe7b0; font: 400 10px ui-monospace, SFMono-Regular, Menlo, Consolas, monospace; }
+    .bs-log.dim { fill: #5f8f73; }
+    .bs-wm { fill: #d8ffdf; font: 700 24px ui-monospace, SFMono-Regular, Menlo, Consolas, monospace; letter-spacing: 1px; }
+    .bs-cursor { fill: #d8ffdf; }
+  </style>
+
+  <g clip-path="url(#bs-panel)">
+    <rect width="320" height="200" fill="url(#bs-bg)"/>
+
+    <g opacity="0">
+      <animate attributeName="opacity" dur="6s" repeatCount="indefinite" keyTimes="0;0.03;1" values="0;1;1"/>
+      <text class="bs-bar" x="16" y="20">RR-DOS v1.888</text>
+      <text class="bs-bar" x="304" y="20" text-anchor="end">&#9679; REC</text>
+      <line class="bs-rule" x1="16" y1="28" x2="304" y2="28"/>
+    </g>
+
+    <text class="bs-log" x="16" y="62" clip-path="url(#bs-c1)">&gt; mounting case file&#8230;</text>
+    <text class="bs-log dim" x="16" y="80" clip-path="url(#bs-c2)">&gt; suspects: flint, billy, clara, whistle</text>
+    <text class="bs-wm" x="32" y="122" filter="url(#bs-glow)" clip-path="url(#bs-cw)">RATTLESNAKE RIDGE</text>
+    <rect class="bs-cursor" x="281" y="104" width="12" height="22" opacity="0"><animate attributeName="opacity" dur="6s" repeatCount="indefinite" calcMode="discrete" keyTimes="0;0.50;0.55;0.60;0.65;0.70;0.75;0.80;0.85;0.90;0.95;1" values="0;1;0;1;0;1;0;1;0;1;0;1"/></rect>
+    <text class="bs-log" x="16" y="158" clip-path="url(#bs-c3)">&gt; will you unravel the truth?</text>
+
+    <g opacity="0">
+      <animate attributeName="opacity" dur="6s" repeatCount="indefinite" keyTimes="0;0.03;1" values="0;1;1"/>
+      <line class="bs-rule" x1="16" y1="176" x2="304" y2="176"/>
+      <text class="bs-bar" x="16" y="190">SESSION 01</text>
+      <text class="bs-bar" x="304" y="190" text-anchor="end">RIDGE COUNTY</text>
+    </g>
+
+    <rect width="320" height="200" fill="url(#bs-scan)" pointer-events="none"/>
+    <rect x="0" y="-120" width="320" height="100" fill="url(#bs-sweep)" pointer-events="none">
+      <animate attributeName="y" dur="7s" repeatCount="indefinite" values="-120;200"/>
+    </rect>
+  </g>
+  <rect x="0.5" y="0.5" width="319" height="199" rx="6" fill="none" stroke="#0a0f0e" stroke-width="1"/>
+</svg>

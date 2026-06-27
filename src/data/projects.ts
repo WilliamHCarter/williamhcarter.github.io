@@ -1,6 +1,6 @@
 import type { ImageMetadata } from "astro";
 import zfetchHeader from "../assets/zfetch.svg";
-import rattlesnakeridge from "../assets/rattlesnakeridge.webp";
+import rattlesnakeridge from "../assets/rattlesnakeridge.svg";
 import lyremusicplayer from "../assets/lyremusicplayer.webp";
 import movinghomes from "../assets/movinghomes.webp";
 import BBOT from "../assets/BBOT.webp";
@@ -51,7 +51,12 @@ export const projects: Project[] = [
   {
     title: "Rattlesnake Ridge",
     body: "Multi-agent ML Mystery Game",
-    media: { type: "image", src: rattlesnakeridge },
+    media: {
+      type: "svg",
+      src: rattlesnakeridge,
+      background: "#050816",
+      padding: "0",
+    },
     link: "https://github.com/WilliamHCarter/rattlesnakeridge",
     techStack: [
       { alt: "React", src: "https://img.shields.io/badge/-React-45b8d8?style=flat-square&logo=react&logoColor=white" },
