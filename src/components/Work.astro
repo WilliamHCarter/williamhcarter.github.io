@@ -1,5 +1,6 @@
 ---
 import WorkCard from "./WorkCard.astro";
+import { sitePath } from "../lib/site-path";
 ---
 
 <div class="animate-intro-200">
@@ -12,8 +13,8 @@ import WorkCard from "./WorkCard.astro";
   </div>
   <div class="grid grid-cols-1 grid:grid-cols-2 gap-4 p-0">
     <WorkCard
-      src="/zfetch.png"
-      srcmobile="/zfetch.png"
+      src={sitePath("/zfetch.png")}
+      srcmobile={sitePath("/zfetch.png")}
       title="ZFetch"
       body="Command-line system information tool"
       link="https://github.com/WilliamHCarter/zfetch"
@@ -25,8 +26,8 @@ import WorkCard from "./WorkCard.astro";
       ]}
     />
     <WorkCard
-      src="/rattlesnakeridge.webp"
-      srcmobile="/rattlesnakeridge.webp"
+      src={sitePath("/rattlesnakeridge.webp")}
+      srcmobile={sitePath("/rattlesnakeridge.webp")}
       title="Rattlesnake Ridge"
       body="Multi-agent ML Mystery Game"
       link="https://github.com/WilliamHCarter/rattlesnakeridge"
@@ -42,8 +43,8 @@ import WorkCard from "./WorkCard.astro";
       ]}
     />
     <WorkCard
-      src="/lyremusicplayer.webp"
-      srcmobile="/lyremusicplayer.webp"
+      src={sitePath("/lyremusicplayer.webp")}
+      srcmobile={sitePath("/lyremusicplayer.webp")}
       title="Lyre"
       body="Album-focused music player"
       link="https://github.com/WilliamHCarter/lyremusicplayer"
@@ -59,8 +60,8 @@ import WorkCard from "./WorkCard.astro";
       ]}
     />
     <WorkCard
-      src="/movinghomes.webp"
-      srcmobile="/movinghomes.webp"
+      src={sitePath("/movinghomes.webp")}
+      srcmobile={sitePath("/movinghomes.webp")}
       title="Moving Homes Together Website"
       body="A simple, professional website built with Astro and TailwindCSS."
       link="https://github.com/WilliamHCarter/movingtogetherwebsite"
@@ -76,8 +77,8 @@ import WorkCard from "./WorkCard.astro";
       ]}
     />
     <WorkCard
-      src="/BBOT.webp"
-      srcmobile="/BBOT-mobile.webp"
+      src={sitePath("/BBOT.webp")}
+      srcmobile={sitePath("/BBOT-mobile.webp")}
       title="BrokerBot"
       body="Autonomous trading alogrithms system utilizing backtesting via the Alpaca API."
       link="https://github.com/JackMansfield2019/BrokerBot"
@@ -89,8 +90,8 @@ import WorkCard from "./WorkCard.astro";
       ]}
     />
     <WorkCard
-      src="/Crosswalk.webp"
-      srcmobile="/Crosswalk.webp"
+      src={sitePath("/Crosswalk.webp")}
+      srcmobile={sitePath("/Crosswalk.webp")}
       title="Crosswalk"
       body="Experimental physics game created with Unity for Ludum Dare 46."
       link="https://github.com/WilliamHCarter/LD46"

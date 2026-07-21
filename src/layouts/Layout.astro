@@ -5,6 +5,7 @@ export interface Props {
 
 const { title } = Astro.props;
 import Navbar from "../components/Navbar.astro";
+import { sitePath } from "../lib/site-path";
 import "@fontsource/inter/400.css";
 import "@fontsource/inter/500.css";
 import "@fontsource/inter/600.css";
@@ -17,9 +18,9 @@ import "@fontsource/inter/600.css";
     <meta name="viewport" content="width=device-width" />
     <meta name="description" content="William Carter Portfolio Homepage" />
     <meta name="author" content="William Carter" />
-    <meta property="og:image" content="/thumbnail.webp" />
-    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
-    <link rel="preload" href="/zfetch.png" as="image" fetchpriority="high" />
+    <meta property="og:image" content={sitePath("/thumbnail.webp")} />
+    <link rel="icon" type="image/svg+xml" href={sitePath("/favicon.svg")} />
+    <link rel="preload" href={sitePath("/zfetch.png")} as="image" fetchpriority="high" />
     <meta name="generator" content={Astro.generator} />
     <title>{title}</title>
     <script is:inline>

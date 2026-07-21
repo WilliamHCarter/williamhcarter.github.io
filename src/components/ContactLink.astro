@@ -7,11 +7,12 @@ export interface props {
 }
 
 const { icon, href, text } = Astro.props;
+import { sitePath } from "../lib/site-path";
 ---
 
 <div class="flex items-center px-4 py-2 hover:bg-teal hover:bg-opacity-25 rounded-md">
   <img
-    src={`/${icon}.svg`}
+    src={sitePath(`/${icon}.svg`)}
     alt={`${icon}-icon`}
     class="inline-block w-6 mr-1 fill-teal dark:fill-dteal"
   />
