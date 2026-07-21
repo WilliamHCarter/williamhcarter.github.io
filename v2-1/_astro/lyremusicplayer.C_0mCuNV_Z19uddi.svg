@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg viewBox="0 0 320 200" width="800" height="500" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Lyre curtain reveal">
+            <rect width="320" height="200" fill="#000"/>
+
+            <!-- wordmark, behind the spines; snaps on while hidden -->
+            <text x="160" y="100" text-anchor="middle" fill="#dfe6ea" opacity="0"
+              style="font: 800 40px -apple-system, 'Helvetica Neue', Arial, sans-serif; letter-spacing: 5px;">LYRE<animate attributeName="opacity" dur="5s" repeatCount="indefinite" calcMode="discrete" keyTimes="0;0.20" values="0;1"/></text>
+
+            <!-- spines: up, short beat, down to squares. Palette is one ramp: deep slate to teal, left to right -->
+            <g><animateTransform attributeName="transform" type="translate" dur="5s" repeatCount="indefinite" calcMode="spline" keyTimes="0;0.016;0.116;0.240;0.340;1" keySplines="0 0 1 1;0.42 0 0.58 1;0 0 1 1;0.42 0 0.58 1;0 0 1 1" values="0 200;0 200;0 0;0 0;0 170.9;0 170.9"/>
+              <rect x="0" y="0" width="29.6" height="200" fill="#232e3e"/><rect x="0" y="0" width="29.6" height="29.09" fill="#314057"/></g>
+            <g><animateTransform attributeName="transform" type="translate" dur="5s" repeatCount="indefinite" calcMode="spline" keyTimes="0;0.026;0.126;0.250;0.350;1" keySplines="0 0 1 1;0.42 0 0.58 1;0 0 1 1;0.42 0 0.58 1;0 0 1 1" values="0 200;0 200;0 0;0 0;0 170.9;0 170.9"/>
+              <rect x="29.09" y="0" width="29.6" height="200" fill="#273645"/><rect x="29.09" y="0" width="29.6" height="29.09" fill="#374c61"/></g>
+            <g><animateTransform attributeName="transform" type="translate" dur="5s" repeatCount="indefinite" calcMode="spline" keyTimes="0;0.036;0.136;0.260;0.360;1" keySplines="0 0 1 1;0.42 0 0.58 1;0 0 1 1;0.42 0 0.58 1;0 0 1 1" values="0 200;0 200;0 0;0 0;0 170.9;0 170.9"/>
+              <rect x="58.18" y="0" width="29.6" height="200" fill="#2b3d4c"/><rect x="58.18" y="0" width="29.6" height="29.09" fill="#3c556a"/></g>
+            <g><animateTransform attributeName="transform" type="translate" dur="5s" repeatCount="indefinite" calcMode="spline" keyTimes="0;0.046;0.146;0.270;0.370;1" keySplines="0 0 1 1;0.42 0 0.58 1;0 0 1 1;0.42 0 0.58 1;0 0 1 1" values="0 200;0 200;0 0;0 0;0 170.9;0 170.9"/>
+              <rect x="87.27" y="0" width="29.6" height="200" fill="#2f4554"/><rect x="87.27" y="0" width="29.6" height="29.09" fill="#426176"/></g>
+            <g><animateTransform attributeName="transform" type="translate" dur="5s" repeatCount="indefinite" calcMode="spline" keyTimes="0;0.056;0.156;0.280;0.380;1" keySplines="0 0 1 1;0.42 0 0.58 1;0 0 1 1;0.42 0 0.58 1;0 0 1 1" values="0 200;0 200;0 0;0 0;0 170.9;0 170.9"/>
+              <rect x="116.36" y="0" width="29.6" height="200" fill="#334c5b"/><rect x="116.36" y="0" width="29.6" height="29.09" fill="#476a7f"/></g>
+            <g><animateTransform attributeName="transform" type="translate" dur="5s" repeatCount="indefinite" calcMode="spline" keyTimes="0;0.066;0.166;0.290;0.390;1" keySplines="0 0 1 1;0.42 0 0.58 1;0 0 1 1;0.42 0 0.58 1;0 0 1 1" values="0 200;0 200;0 0;0 0;0 170.9;0 170.9"/>
+              <rect x="145.45" y="0" width="29.6" height="200" fill="#375462"/><rect x="145.45" y="0" width="29.6" height="29.09" fill="#4d7689"/></g>
+            <g><animateTransform attributeName="transform" type="translate" dur="5s" repeatCount="indefinite" calcMode="spline" keyTimes="0;0.076;0.176;0.300;0.400;1" keySplines="0 0 1 1;0.42 0 0.58 1;0 0 1 1;0.42 0 0.58 1;0 0 1 1" values="0 200;0 200;0 0;0 0;0 170.9;0 170.9"/>
+              <rect x="174.55" y="0" width="29.6" height="200" fill="#3a5c69"/><rect x="174.55" y="0" width="29.6" height="29.09" fill="#518193"/></g>
+            <g><animateTransform attributeName="transform" type="translate" dur="5s" repeatCount="indefinite" calcMode="spline" keyTimes="0;0.086;0.186;0.310;0.410;1" keySplines="0 0 1 1;0.42 0 0.58 1;0 0 1 1;0.42 0 0.58 1;0 0 1 1" values="0 200;0 200;0 0;0 0;0 170.9;0 170.9"/>
+              <rect x="203.64" y="0" width="29.6" height="200" fill="#3e6370"/><rect x="203.64" y="0" width="29.6" height="29.09" fill="#578b9d"/></g>
+            <g><animateTransform attributeName="transform" type="translate" dur="5s" repeatCount="indefinite" calcMode="spline" keyTimes="0;0.096;0.196;0.320;0.420;1" keySplines="0 0 1 1;0.42 0 0.58 1;0 0 1 1;0.42 0 0.58 1;0 0 1 1" values="0 200;0 200;0 0;0 0;0 170.9;0 170.9"/>
+              <rect x="232.73" y="0" width="29.6" height="200" fill="#426b77"/><rect x="232.73" y="0" width="29.6" height="29.09" fill="#5c96a7"/></g>
+            <g><animateTransform attributeName="transform" type="translate" dur="5s" repeatCount="indefinite" calcMode="spline" keyTimes="0;0.106;0.206;0.330;0.430;1" keySplines="0 0 1 1;0.42 0 0.58 1;0 0 1 1;0.42 0 0.58 1;0 0 1 1" values="0 200;0 200;0 0;0 0;0 170.9;0 170.9"/>
+              <rect x="261.82" y="0" width="29.6" height="200" fill="#46727f"/><rect x="261.82" y="0" width="29.6" height="29.09" fill="#62a0b2"/></g>
+            <g><animateTransform attributeName="transform" type="translate" dur="5s" repeatCount="indefinite" calcMode="spline" keyTimes="0;0.116;0.216;0.340;0.440;1" keySplines="0 0 1 1;0.42 0 0.58 1;0 0 1 1;0.42 0 0.58 1;0 0 1 1" values="0 200;0 200;0 0;0 0;0 170.9;0 170.9"/>
+              <rect x="290.91" y="0" width="29.09" height="200" fill="#4a7a86"/><rect x="290.91" y="0" width="29.09" height="29.09" fill="#68abbc"/></g>
+
+            <!-- end-of-loop fade to black -->
+            <rect width="320" height="200" fill="#000" opacity="0">
+              <animate attributeName="opacity" dur="5s" repeatCount="indefinite" keyTimes="0;0.93;0.98;1" values="0;0;1;1"/>
+            </rect>
+          </svg>

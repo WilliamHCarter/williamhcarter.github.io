@@ -1,0 +1,79 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 320 200" width="800" height="500" role="img" aria-label="Town of Rattlesnake Ridge">
+  <title>Rattlesnake Ridge — framed wordmark</title>
+  <desc>Town-of-Rattlesnake-Ridge wordmark framed by diamondback rules, on a CRT screen with a scanline sweep.</desc>
+  <defs>
+    <radialGradient id="fr-bg" cx="50%" cy="40%" r="75%">
+      <stop offset="0%" stop-color="#123a33"/>
+      <stop offset="60%" stop-color="#081E1A"/>
+      <stop offset="100%" stop-color="#020403"/>
+    </radialGradient>
+    <linearGradient id="fr-sweep" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0%" stop-color="#c7ffdb" stop-opacity="0"/>
+      <stop offset="50%" stop-color="#c7ffdb" stop-opacity="0.10"/>
+      <stop offset="100%" stop-color="#c7ffdb" stop-opacity="0"/>
+    </linearGradient>
+    <linearGradient id="fr-fade-l" gradientUnits="userSpaceOnUse" x1="20" y1="0" x2="120" y2="0">
+      <stop offset="0" stop-color="#f3c45b" stop-opacity="0"/>
+      <stop offset="1" stop-color="#f3c45b" stop-opacity="0.85"/>
+    </linearGradient>
+    <linearGradient id="fr-fade-r" gradientUnits="userSpaceOnUse" x1="200" y1="0" x2="300" y2="0">
+      <stop offset="0" stop-color="#f3c45b" stop-opacity="0.85"/>
+      <stop offset="1" stop-color="#f3c45b" stop-opacity="0"/>
+    </linearGradient>
+    <pattern id="fr-scan" x="0" y="0" width="3" height="2" patternUnits="userSpaceOnUse">
+      <rect width="3" height="1" fill="#121010" opacity="0"/>
+      <rect width="3" height="1" y="1" fill="#000000" opacity="0.14"/>
+      <rect width="1" height="2" fill="#ff0000" opacity="0.03"/>
+      <rect width="1" height="2" x="1" fill="#00ff00" opacity="0.01"/>
+      <rect width="1" height="2" x="2" fill="#0000ff" opacity="0.03"/>
+    </pattern>
+    <filter id="fr-glow" x="-15%" y="-15%" width="130%" height="130%">
+      <feGaussianBlur stdDeviation="1.3" result="b"/>
+      <feMerge>
+        <feMergeNode in="b"/>
+        <feMergeNode in="SourceGraphic"/>
+      </feMerge>
+    </filter>
+    <clipPath id="fr-panel"><rect x="0" y="0" width="320" height="200" rx="6"/></clipPath>
+  </defs>
+
+  <style>
+    .fr-kicker { fill: #f3c45b; font: 700 8px ui-monospace, SFMono-Regular, Menlo, Consolas, monospace; letter-spacing: 1.8px; }
+    .fr-wm { fill: #d8ffdf; font: 700 20px "Iowan Old Style", "Palatino Linotype", Palatino, Georgia, ui-serif, serif; letter-spacing: 1.5px; }
+    .fr-sub { fill: #5f8f73; font: 600 7.5px ui-monospace, SFMono-Regular, Menlo, Consolas, monospace; letter-spacing: 1px; }
+    .fr-rule { stroke-width: 1; }
+    .fr-dia { fill: none; stroke: #f3c45b; stroke-width: 1.3; }
+    .fr-dia.fill { fill: #f3c45b; stroke: none; }
+  </style>
+
+  <g clip-path="url(#fr-panel)">
+    <rect width="320" height="200" fill="url(#fr-bg)"/>
+
+    <line class="fr-rule" x1="20" y1="46" x2="120" y2="46" stroke="url(#fr-fade-l)"/>
+    <line class="fr-rule" x1="200" y1="46" x2="300" y2="46" stroke="url(#fr-fade-r)"/>
+    <path class="fr-dia" d="M132,42 L136,46 L132,50 L128,46 Z"/>
+    <path class="fr-dia fill" d="M146,42 L150,46 L146,50 L142,46 Z"/>
+    <path class="fr-dia" d="M160,42 L164,46 L160,50 L156,46 Z"/>
+    <path class="fr-dia fill" d="M174,42 L178,46 L174,50 L170,46 Z"/>
+    <path class="fr-dia" d="M188,42 L192,46 L188,50 L184,46 Z"/>
+
+    <text class="fr-kicker" x="160" y="79" text-anchor="middle">WELCOME TO</text>
+    <text class="fr-wm" x="160" y="107" text-anchor="middle" filter="url(#fr-glow)">RATTLESNAKE RIDGE</text>
+    <text class="fr-sub" x="160" y="128" text-anchor="middle">FOUR SUSPECTS &#183; ONE TRUTH</text>
+
+    <line class="fr-rule" x1="20" y1="154" x2="120" y2="154" stroke="url(#fr-fade-l)"/>
+    <line class="fr-rule" x1="200" y1="154" x2="300" y2="154" stroke="url(#fr-fade-r)"/>
+    <path class="fr-dia" d="M132,150 L136,154 L132,158 L128,154 Z"/>
+    <path class="fr-dia fill" d="M146,150 L150,154 L146,158 L142,154 Z"/>
+    <path class="fr-dia" d="M160,150 L164,154 L160,158 L156,154 Z"/>
+    <path class="fr-dia fill" d="M174,150 L178,154 L174,158 L170,154 Z"/>
+    <path class="fr-dia" d="M188,150 L192,154 L188,158 L184,154 Z"/>
+
+    <rect width="320" height="200" fill="url(#fr-scan)" pointer-events="none"/>
+    <rect x="0" y="-120" width="320" height="100" fill="url(#fr-sweep)" pointer-events="none">
+      <animate attributeName="y" dur="7s" repeatCount="indefinite" values="-120;200"/>
+    </rect>
+  </g>
+  <rect x="0.5" y="0.5" width="319" height="199" rx="6" fill="none" stroke="#0a0f0e" stroke-width="1"/>
+</svg>
