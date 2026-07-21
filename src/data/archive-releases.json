@@ -1,1 +1,9 @@
-[]
+[
+  {
+    "id": "2024",
+    "title": "V2 - Orbs",
+    "releasedAt": "2023 – 2024",
+    "description": "Astro + SolidJS design with floating-orb hero section. This was my homepage for quite a while, with minimal tweaks over time to the listed projects etc.",
+    "sourceTag": "site-2024"
+  }
+]
