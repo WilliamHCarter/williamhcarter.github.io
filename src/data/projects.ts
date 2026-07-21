@@ -2,7 +2,7 @@ import type { ImageMetadata } from "astro";
 import zfetchHeader from "../assets/zfetch.svg";
 import rattlesnakeridge from "../assets/rattlesnakeridge.svg";
 import lyremusicplayer from "../assets/lyremusicplayer.svg";
-import movinghomes from "../assets/movinghomes.webp";
+import movinghomes from "../assets/movinghomes.svg";
 import BBOT from "../assets/BBOT.webp";
 import BBOTmobile from "../assets/BBOT-mobile.webp";
 import Crosswalk from "../assets/Crosswalk.webp";
