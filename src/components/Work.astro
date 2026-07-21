@@ -4,7 +4,7 @@ import { projects } from "../data/projects";
 ---
 
 <div class="animate-intro-200">
-  <div class="mt-10">
+  <div class="">
     <h3
       class="font-semibold text-2xl underline underline-offset-4 decoration-darkhl decoration-4 mt-3 mb-4"
     >
@@ -12,17 +12,19 @@ import { projects } from "../data/projects";
     </h3>
   </div>
   <div class="grid grid-cols-1 grid:grid-cols-2 gap-4 p-0">
-    {projects.map((p, i) => (
-      <WorkCard
-        media={p.media}
-        title={p.title}
-        body={p.body}
-        link={p.link}
-        techStack={p.techStack}
-        loading={i < 2 ? "eager" : "lazy"}
-        fetchpriority={i === 0 ? "high" : "auto"}
-      />
-    ))}
+    {
+      projects.map((p, i) => (
+        <WorkCard
+          media={p.media}
+          title={p.title}
+          body={p.body}
+          link={p.link}
+          techStack={p.techStack}
+          loading={i < 2 ? "eager" : "lazy"}
+          fetchpriority={i === 0 ? "high" : "auto"}
+        />
+      ))
+    }
   </div>
 </div>
 

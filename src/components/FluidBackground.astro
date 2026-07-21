@@ -1,0 +1,89 @@
+{/*
+  Fluid-dots site background (from /lab). Default: fills its parent (the
+  hero). Append ?bg=full to the URL to compare the full-page fixed variant.
+*/}
+<div data-fluid-bg class="absolute inset-0 z-0">
+  <canvas class="block w-full h-full"></canvas>
+</div>
+
+<style is:global>
+  /* full-page mode: let the fixed canvas show through the page background */
+  html.fluid-bg-full main {
+    background: transparent !important;
+  }
+</style>
+
+<script>
+  import { mountFluidDots } from "../lab/backgrounds/fluid";
+  import { watchTheme } from "../lab/backgrounds/runtime";
+
+  const wrap = document.querySelector<HTMLElement>("[data-fluid-bg]");
+  const canvas = wrap?.querySelector("canvas");
+  if (wrap && canvas) {
+    const full = new URLSearchParams(location.search).get("bg") === "full";
+    if (full) {
+      wrap.style.position = "fixed";
+      wrap.style.inset = "0";
+      document.documentElement.classList.add("fluid-bg-full");
+    }
+
+    const reduced = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+    let inst: ReturnType<typeof mountFluidDots> = null;
+    let raf = 0;
+    let last = 0;
+    let time = 0;
+    let inView = true;
+
+    function tick(now: number) {
+      raf = requestAnimationFrame(tick);
+      const dt = Math.min((now - last) / 1000, 1 / 30);
+      last = now;
+      time += dt;
+      inst!.frame(time, dt);
+    }
+    function start() {
+      if (!inst || raf || reduced) return;
+      last = performance.now();
+      raf = requestAnimationFrame(tick);
+    }
+    function stop() {
+      if (raf) cancelAnimationFrame(raf);
+      raf = 0;
+    }
+
+    function init() {
+      inst = mountFluidDots(canvas!);
+      if (!inst) return;
+      // theme changes while the loop is paused (reduced motion, hidden tab)
+      // still repaint one frame with the new colors
+      watchTheme(() => {
+        if (!raf && inst) {
+          time += 1 / 60;
+          inst.frame(time, 1 / 60);
+        }
+      });
+      if (reduced) {
+        // static-but-composed frame
+        for (let i = 0; i < (inst.reducedFrames ?? 240); i++) {
+          time += 1 / 60;
+          inst.frame(time, 1 / 60);
+        }
+        return;
+      }
+      document.addEventListener("visibilitychange", () => {
+        if (document.hidden) stop();
+        else if (inView) start();
+      });
+      new IntersectionObserver((entries) => {
+        inView = entries[0]?.isIntersecting ?? true;
+        if (inView && !document.hidden) start();
+        else stop();
+      }).observe(wrap!);
+      start();
+    }
+
+    // lazy init after critical content paints (same spirit as the old orbs)
+    if (document.readyState === "complete") setTimeout(init, 100);
+    else window.addEventListener("load", () => setTimeout(init, 100));
+  }
+</script>

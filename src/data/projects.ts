@@ -104,32 +104,4 @@ export const projects: Project[] = [
       },
     ],
   },
-  {
-    title: "BrokerBot",
-    body: "Autonomous trading alogrithms system utilizing backtesting via the Alpaca API.",
-    media: { type: "image", src: BBOT, mobileSrc: BBOTmobile },
-    link: "https://github.com/JackMansfield2019/BrokerBot",
-    techStack: [
-      {
-        alt: "Python",
-        src: "https://img.shields.io/badge/-Python-3776AB?style=flat-square&logo=python&logoColor=white",
-      },
-    ],
-  },
-  {
-    title: "Crosswalk",
-    body: "Experimental physics game created with Unity for Ludum Dare 46.",
-    media: { type: "image", src: Crosswalk },
-    link: "https://github.com/WilliamHCarter/LD46",
-    techStack: [
-      {
-        alt: "C#",
-        src: "https://img.shields.io/badge/-CSharp-561eba?style=flat-square&logo=csharp&logoColor=white",
-      },
-      {
-        alt: "Unity",
-        src: "https://img.shields.io/badge/-Unity-000000?style=flat-square&logo=unity&logoColor=white",
-      },
-    ],
-  },
 ];
