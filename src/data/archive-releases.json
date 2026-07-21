@@ -1,5 +1,12 @@
 [
   {
+    "id": "v2-1",
+    "title": "V2.1 - Motion",
+    "releasedAt": "2026",
+    "description": "Iteration on V2 with the morphing navbar, animated SVG project cards, and an internal data separation refactor.",
+    "sourceTag": "site-v2-1"
+  },
+  {
     "id": "2024",
     "title": "V2 - Orbs",
     "releasedAt": "2023 – 2024",
